@@ -4,12 +4,12 @@ import * as yup from "yup";
 import axios from "axios";
 import dayjs from "dayjs";
 import { toast } from "react-toastify";
-import { MAIN_DOMAIN } from "../utils/constants";
+import { MAIN_DOMAIN } from "../utils/functions";
 import {
   getHTTPHeaderWithToken,
   getSendingDataSpinner,
 } from "../utils/functions";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../utils/functions";
 
 const UserProfileForm = ({ userProfileData }) => {
   const authUser = useContext(AuthContext);
