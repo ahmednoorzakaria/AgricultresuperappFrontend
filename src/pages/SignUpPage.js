@@ -1,34 +1,45 @@
 import React, { useState } from 'react';
+import './SignUp.css';
 
 function SignUp() {
-    const [formData, setFormData] = useState({
-        first_name: '',
-        last_name: '',
-        profile_picture: "https://cdn-icons-png.flaticon.com/512/3319/3319220.png",
-        username: '',
-        email: '',
-        password: '',
-        confirm_password: ''
-    });
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-    const handleChange = (e) => {
-        setFormData({...formData, [e.target.name]: e.target.first_name });
-    };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Handle form submission
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Handle form submission logic here
-    };
-
-return (
-    <form onSubmit={handleSubmit}>
-        <input type="first_name" name="first_name" onChange={handleChange} placeholder="First Name" required />
-        <input type="last_name" name="last_name" onChange={handleChange} placeholder="Last Name" required />
-        <input type="username" name="username" onChange={handleChange} placeholder="UserName" required />
-        <input type="email" name="email" onChange={handleChange} placeholder="Email" required />
-        <input type="password" name="password" onChange={handleChange} placeholder="Password" required />
-        <input type="password" name="password" onChange={handleChange} placeholder="Confirm Password" required />
+  return (
+    <div className="signup-form">
+      <form onSubmit={handleSubmit}>
+        <label>
+          First Name:
+          <input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} required />
+        </label>
+        <label>
+          Last Name:
+          <input type="text" value={lastName} onChange={e => setLastName(e.target.value)} required />
+        </label>
+        <label>
+          Email:
+          <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
+        </label>
+        <label>
+          Password:
+          <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
+        </label>
+        <label>
+          Confirm Password:
+          <input type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} required />
+        </label>
         <button type="submit">Sign Up</button>
-    </form>
-   );
+      </form>
+    </div>
+  );
 }
+
+export default SignUp;
