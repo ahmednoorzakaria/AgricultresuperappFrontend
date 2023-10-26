@@ -1,0 +1,23 @@
+.signup-form {
+    width: 300px;
+    margin: 0 auto;
+  }
+  
+  .signup-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .signup-form label {
+    margin-bottom: 10px;
+  }
+  
+  .signup-form input {
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .signup-form button {
+    padding: 10px;
+  }
+  
