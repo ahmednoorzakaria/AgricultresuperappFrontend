@@ -7,6 +7,7 @@ p {
     display: grid;
     background-color: aliceblue;
     justify-content: space-between;
+    width: 100%;
 }
 
 li {
@@ -28,19 +29,29 @@ li {
 
 .custom-search {
     width: 70px;
-    height: 30px;
+    height: 38px;
     font-size: 16px;
+}
+
+.search-section {
+    display: flex;
+    gap: 50px;
+    margin: auto;
 }
 
 .content1 {
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
 .content2 {
     display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     font-size: 5px;
+    margin: auto 300px auto;
 }
 
 .list2 {
@@ -55,16 +66,56 @@ li {
 .login {
     float: right;
     float: left;
+    padding: 10px;
 }
 
 .cards-section {
-    display: flex;
+    display: grid;
     justify-content: space-between;
 }
 
 .card {
     border: 2px solid #ccc;
-    padding: 20px;
-    width: 30%;
+    margin: 20px;
+    width: 1000px;
     text-align: center;
+}
+
+.body-section {
+    display: flex;
+}
+
+.radio-grid {
+    display: grid;
+    gap: 10px;
+}
+
+.radio-grid label {
+    display: flex;
+    align-items: center;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.pagination button.active {
+    background-color: #0056b3;
+}
+
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
