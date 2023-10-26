@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import './SignUp.css';
+import '../assets/css/Signup.css';
 
 function SignUp() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -23,6 +24,10 @@ function SignUp() {
         <label>
           Last Name:
           <input type="text" value={lastName} onChange={e => setLastName(e.target.value)} required />
+        </label>
+        <label>
+          UserName:
+          <input type="text" value={userName} onChange={e => setUserName(e.target.value)} required />
         </label>
         <label>
           Email:

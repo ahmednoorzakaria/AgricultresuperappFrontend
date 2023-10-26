@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import '../assets/css';
 
 function SignIn() {
-  const [userName, setUserName] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
