@@ -1,4 +1,70 @@
-p{
+p {
     color: blue;
     font-size: 30px;
+}
+
+.custom-nav {
+    display: grid;
+    background-color: aliceblue;
+    justify-content: space-between;
+}
+
+li {
+    list-style: none;
+    text-decoration: none;
+    font-size: 30px;
+}
+
+.custom-image {
+    width: 150px;
+    height: 150px;
+}
+
+.custom-input {
+    width: 150px;
+    height: 30px;
+    font-size: 16px;
+}
+
+.custom-search {
+    width: 70px;
+    height: 30px;
+    font-size: 16px;
+}
+
+.content1 {
+    display: flex;
+    align-items: center;
+}
+
+.content2 {
+    display: flex;
+    text-align: center;
+    font-size: 5px;
+}
+
+.list2 {
+    display: flex;
+    gap: 50px;
+}
+
+.list2 li {
+    margin-right: 20px;
+}
+
+.login {
+    float: right;
+    float: left;
+}
+
+.cards-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    border: 2px solid #ccc;
+    padding: 20px;
+    width: 30%;
+    text-align: center;
 }
