@@ -1,0 +1,75 @@
+{
+    "users": [
+      {
+        "user-id": 1,
+        "name": "John Doe",
+        "country": "USA",
+        "gender": "Male",
+        "posts": [
+          {
+            "post-id": 101
+          },
+          {
+            "post-id": 102
+          }
+        ]
+      },
+      {
+        "user-id": 2,
+        "name": "Jane Smith",
+        "country": "Canada",
+        "gender": "Female",
+        "posts": [
+          {
+            "post-id": 201
+          },
+          {
+            "post-id": 202
+          }
+        ]
+      },
+      {
+        "user-id": 3,
+        "name": "Alice Johnson",
+        "country": "UK",
+        "gender": "Female",
+        "posts": [
+          {
+            "post-id": 301
+          },
+          {
+            "post-id": 302
+          }
+        ]
+      },
+      {
+        "user-id": 4,
+        "name": "Ali Jane",
+        "country": "Zambia",
+        "gender": "Female",
+        "posts": [
+          {
+            "post-id": 401
+          },
+          {
+            "post-id": 402
+          }
+        ]
+      },
+      {
+        "user-id": 5,
+        "name": "Baraka Monet",
+        "country": "Kenya",
+        "gender": "Male",
+        "posts": [
+          {
+            "post-id": 501
+          },
+          {
+            "post-id": 502
+          }
+        ]
+      }
+    ]
+}    
+    
