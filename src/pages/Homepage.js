@@ -158,6 +158,9 @@ function HomePage() {
                     </div>
                 </div>
             </div>
+            <footer>
+                <p>Hello</p>
+            </footer>
         </div>
     )
 }
