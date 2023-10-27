@@ -39,7 +39,7 @@
 - Email: stephen.ndaba@student.moringaschool.com
 - Email: kamente.justin@student.moringaschool.com
 
-###### License
+##### License
 Copyright (c) {{ 2023 }}, {{ CULTURAL }}
 
 Permission to use, copy, modify, and/or distribute this software for any
