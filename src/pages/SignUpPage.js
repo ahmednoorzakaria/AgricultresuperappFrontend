@@ -1,20 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import UserProfileForm from "../components/UserProfileForm";
+import UserProfileForm from "../components/UserProfileForm"
 
-const SignUpPage = () => {
+const SignUp = () => {
   const userProfileData = {
     first_name: "",
     last_name: "",
     username: "",
     bio: "",
-    profile_picture: "",
+    profile_picture: "src/images/farmer.png",
     email: "",
     password: "",
     confirm_password: "",
   };
   return (
-    <div className="signup-page">
+    <div className="signup">
       <section className="form-section">
         <h2 className="signup-title">Create an account</h2>
         <UserProfileForm userProfileData={userProfileData} />
@@ -26,4 +26,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default SignUp;
