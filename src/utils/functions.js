@@ -1,4 +1,5 @@
 import { ColorRing } from "react-loader-spinner";
+import { createContext } from "react";
 
 const AUTH_USER = "authUser";
 
@@ -11,32 +12,46 @@ const getAuthUserFromLocalStorage = () => {
 };
 
 const removeAuthUserFromLocalStorage = () => {
-  return localStorage.removeItem(AUTH_USER);
+  localStorage.removeItem(AUTH_USER);
 };
 
 const getHTTPHeaderWithToken = () => {
-  return {
-    headers: {
-      Authorization: `Bearer ${getAuthUserFromLocalStorage()}`,
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-    },
-  };
+  const authUser = getAuthUserFromLocalStorage(); // Retrieve the authUser
+  if (authUser) {
+    return {
+      headers: {
+        Authorization: `Bearer ${authUser}`,
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
+  } else {
+    return {
+      headers: {
+        "Content-Type": "application.json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    };
+  }
 };
 
 const getSendingDataSpinner = () => {
-  return (
-    <ColorRing
-      visible={true}
-      height="50"
-      width="50"
-      ariaLabel="blocks-loading"
-      wrapperStyle={{}}
-      wrapperClass="blocks-wrapper"
-      colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
-    />
-  );
+  return `<ColorRing
+    visible={true}
+    height={50}
+    width={50}
+    ariaLabel="blocks-loading"
+    wrapperStyle={{}}
+    wrapperClass="blocks-wrapper"
+    colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+  />`;
 };
+
+// Define AuthContext
+const AuthContext = createContext();
+
+// Define MAIN_DOMAIN
+const MAIN_DOMAIN = 'your_main_domain_here';
 
 export {
   storeAuthUserOnLocalStorage,
@@ -44,4 +59,6 @@ export {
   removeAuthUserFromLocalStorage,
   getHTTPHeaderWithToken,
   getSendingDataSpinner,
+  AuthContext, // Export AuthContext
+  MAIN_DOMAIN, // Export MAIN_DOMAIN
 };

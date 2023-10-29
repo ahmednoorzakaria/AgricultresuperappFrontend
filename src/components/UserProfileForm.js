@@ -309,7 +309,7 @@ const UserProfileForm = ({ userProfileData }) => {
           />
           <span className="error">
             {formik.touched.identification_card &&
-            formik.errors.identification_card
+              formik.errors.identification_card
               ? formik.errors.identification_card
               : null}
           </span>
