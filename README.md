@@ -1,5 +1,5 @@
 # **CULTURAL**: Agricultural-Super-App (Project)
-**Authours**: *AhmedNoor Zakaria*, *Abigael Mutuku*, *Brian Maina*, *Stephen Ndaba*, *Justin Kamente*
+**Authours**: *AhmedNoor Zakaria*, *Abigael Mutuku*, *Brian Maina*, *Stephen Ndaba*, *Kamente Justin*
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@
 
    cd [AgricultresuperappFrontend]
 
-3. Finally,open the repository in VS.Code:
+3. Finally, open the repository in VS.Code:
 
    Type this into your terminal: [*code .*]
 
@@ -39,7 +39,7 @@
 - Email: stephen.ndaba@student.moringaschool.com
 - Email: kamente.justin@student.moringaschool.com
 
-##### License
+### License
 Copyright (c) {{ 2023 }}, {{ CULTURAL }}
 
 Permission to use, copy, modify, and/or distribute this software for any

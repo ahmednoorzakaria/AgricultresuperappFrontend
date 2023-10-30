@@ -1,8 +1,7 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { getSendingDataSpinner } from "../utils/functions";
 
-const LoginPage = ({ handleLogin }) => {
+const LogIn = ({ handleLogin }) => {
   const formSchema = yup.object().shape({
     username: yup.string().email("Invalid email").required("Must enter email"),
     password: yup.string().required("Must enter a password").min(5),
@@ -71,4 +70,4 @@ const LoginPage = ({ handleLogin }) => {
   );
 };
 
-export default LoginPage;
+export default LogIn;

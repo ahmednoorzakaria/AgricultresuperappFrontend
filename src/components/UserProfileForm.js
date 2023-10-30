@@ -3,13 +3,12 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import dayjs from "dayjs";
-import { toast } from "react-toastify";
-import { MAIN_DOMAIN } from "../utils/functions";
-import {
-  getHTTPHeaderWithToken,
-  getSendingDataSpinner,
-} from "../utils/functions";
-import { AuthContext } from "../utils/functions";
+// import { toast } from "react-toastify";
+// import {
+  //getHTTPHeaderWithToken,
+  //getSendingDataSpinner,
+//} // from "../utils/functions";
+//import { AuthContext } from "../utils/functions";
 
 const UserProfileForm = ({ userProfileData }) => {
   const authUser = useContext(AuthContext);
@@ -118,15 +117,6 @@ const UserProfileForm = ({ userProfileData }) => {
       .string()
       .oneOf([yup.ref("password"), null], "Password must much")
       .required("Required"),
-    gender: yup.string().required("Gender required"),
-    identification_card: yup.string().required("Required"),
-    contact: yup.string().required("Required"),
-    date_of_birth: yup
-      .date()
-      .nullable()
-      .transform((curr, orig) => (orig === "" ? null : curr))
-      .max(eighteen_years_ago, "You must be at least 18 years old to register")
-      .required("Required field"),
   });
   const formik = useFormik({
     enableReinitialize: true,
@@ -138,10 +128,6 @@ const UserProfileForm = ({ userProfileData }) => {
       profile_picture: userProfileData.profile_picture,
       email: userProfileData.email,
       password: "",
-      gender: userProfileData.gender,
-      identification_card: userProfileData.identification_card,
-      date_of_birth: userProfileData.date_of_birth,
-      contact: userProfileData.contact,
       confirm_password: "",
     },
     validationSchema: formSchema,
@@ -222,36 +208,6 @@ const UserProfileForm = ({ userProfileData }) => {
       </div>
       <div className="form-group">
         <div className="form-control">
-          <label htmlFor="male">Male</label>
-          <input
-            type="radio"
-            name="gender"
-            id="male"
-            value="M"
-            onChange={formik.handleChange}
-            checked={formik.values.gender === "M"}
-          />
-          <span></span>
-        </div>
-        <div className="form-control">
-          <label htmlFor="female">Female</label>
-          <input
-            type="radio"
-            name="gender"
-            id="female"
-            value="F"
-            onChange={formik.handleChange}
-            checked={formik.values.gender === "F"}
-          />
-          <span className="error">
-            {formik.touched.gender && formik.errors.gender
-              ? formik.errors.gender
-              : null}
-          </span>
-        </div>
-      </div>
-      <div className="form-group">
-        <div className="form-control">
           <label htmlFor="profile-pic">Profile Pic</label>
           <input
             type="url"
@@ -265,55 +221,7 @@ const UserProfileForm = ({ userProfileData }) => {
               ? formik.errors.profile_picture
               : null}
           </span>
-        </div>
-        <div className="form-control">
-          <label htmlFor="dob">Date of Birth</label>
-          <input
-            type="date"
-            name="date_of_birth"
-            id="dob"
-            onChange={formik.handleChange}
-            value={formik.values.date_of_birth}
-          />
-          <span className="error">
-            {formik.touched.date_of_birth && formik.errors.date_of_birth
-              ? formik.errors.date_of_birth
-              : null}
-          </span>
-        </div>
-      </div>
-      <div className="form-group">
-        <div className="form-control">
-          <label htmlFor="contact">Contact Number</label>
-          <input
-            type="tel"
-            name="contact"
-            id="contact"
-            onChange={formik.handleChange}
-            value={formik.values.contact}
-          />
-          <span className="error">
-            {formik.touched.contact && formik.errors.contact
-              ? formik.errors.contact
-              : null}
-          </span>
-        </div>
-        <div className="form-control">
-          <label htmlFor="identification_card">National ID</label>
-          <input
-            type="text"
-            name="identification_card"
-            id="identification_card"
-            onChange={formik.handleChange}
-            value={formik.values.identification_card}
-          />
-          <span className="error">
-            {formik.touched.identification_card &&
-            formik.errors.identification_card
-              ? formik.errors.identification_card
-              : null}
-          </span>
-        </div>
+          </div>
       </div>
       <div className="form-group">
         <div className="form-control">

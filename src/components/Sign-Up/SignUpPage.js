@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import UserProfileForm from "../components/UserProfileForm";
+import UserProfileForm from "../UserProfileForm"
 
-const SignUpPage = () => {
+const SignUp = () => {
   const userProfileData = {
     first_name: "",
     last_name: "",
@@ -14,16 +14,16 @@ const SignUpPage = () => {
     confirm_password: "",
   };
   return (
-    <div className="signup-page">
+    <div className="signup">
       <section className="form-section">
         <h2 className="signup-title">Create an account</h2>
         <UserProfileForm userProfileData={userProfileData} />
         <span className="signup-login">
-          Do you have an account? <Link to="/"> Login</Link>{" "}
+          Do you have an account? <Link to="/"> Log-In</Link>{" "}
         </span>
       </section>
     </div>
   );
 };
 
-export default SignUpPage;
+export default SignUp;
