@@ -3,12 +3,12 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import dayjs from "dayjs";
-import { toast } from "react-toastify";
-import {
-  getHTTPHeaderWithToken,
-  getSendingDataSpinner,
-} from "../utils/functions";
-import { AuthContext } from "../utils/functions";
+// import { toast } from "react-toastify";
+// import {
+  //getHTTPHeaderWithToken,
+  //getSendingDataSpinner,
+//} // from "../utils/functions";
+//import { AuthContext } from "../utils/functions";
 
 const UserProfileForm = ({ userProfileData }) => {
   const authUser = useContext(AuthContext);

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import UserProfileForm from "../components/UserProfileForm"
+import UserProfileForm from "../UserProfileForm"
 
 const SignUp = () => {
   const userProfileData = {
@@ -8,7 +8,7 @@ const SignUp = () => {
     last_name: "",
     username: "",
     bio: "",
-    profile_picture: "src/images/farmer.png",
+    profile_picture: "",
     email: "",
     password: "",
     confirm_password: "",
@@ -19,7 +19,7 @@ const SignUp = () => {
         <h2 className="signup-title">Create an account</h2>
         <UserProfileForm userProfileData={userProfileData} />
         <span className="signup-login">
-          Do you have an account? <Link to="/"> Login</Link>{" "}
+          Do you have an account? <Link to="/"> Log-In</Link>{" "}
         </span>
       </section>
     </div>
