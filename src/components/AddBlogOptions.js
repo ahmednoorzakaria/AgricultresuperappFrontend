@@ -6,15 +6,16 @@ function AddBlogOptions({ onClose, onAddBlog }) {
         title: "",
         author: "",
         description: "",
-        category: "Agriculture", // Default category
+        category: "Agriculture",
     });
+
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
     const overlayRef = useRef();
 
     useEffect(() => {
         function handleClickOutside(event) {
             if (overlayRef.current && !overlayRef.current.contains(event.target)) {
-                // Close the form when clicking outside the overlay
                 onClose();
             }
         }
@@ -34,21 +35,26 @@ function AddBlogOptions({ onClose, onAddBlog }) {
     };
 
     const handleSubmit = () => {
-        // You can send the blogData to a dummy API here
-        fetch("https://dummy-api-url", {
+        if (!blogData.title || !blogData.author || !blogData.description || !blogData.category) {
+            alert("Please fill in all mandatory fields");
+            return;
+        }
+
+        fetch("https://agri-blogs.onrender.com/blogs", {
             method: "POST",
             body: JSON.stringify(blogData),
             headers: {
                 "Content-Type": "application/json",
             },
         })
-            .then((response) => response.json())
-            .then((data) => {
-                // Data has been sent successfully
-                console.log("Data sent to the API:", data);
-
-                // Close the form
-                onClose();
+            .then((response) => {
+                if (response.status === 201) {
+                    console.log("Data sent to the API successfully");
+                    onClose();
+                    alert("Thanks for submitting!");
+                } else {
+                    console.error("Error sending data to the API. Status: " + response.status);
+                }
             })
             .catch((error) => {
                 console.error("Error sending data to the API:", error);
@@ -98,8 +104,16 @@ function AddBlogOptions({ onClose, onAddBlog }) {
                         <option value="Horticulture">Horticulture</option>
                     </select>
                 </div>
-                <button onClick={handleSubmit}>Submit</button>
-                <button onClick={onClose}>Cancel</button>
+                {isSubmitted ? (
+                    <div className="submission-message">
+                        Thanks for submitting!
+                    </div>
+                ) : (
+                    <div className="submission-buttons">
+                        <button onClick={handleSubmit}>Submit</button>
+                        <button onClick={onClose}>Cancel</button>
+                    </div>
+                )}
             </div>
         </div>
     );
