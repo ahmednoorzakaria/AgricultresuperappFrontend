@@ -8,7 +8,7 @@ const SignUp = () => {
     last_name: "",
     username: "",
     bio: "",
-    profile_picture: "",
+    profile_picture: "https://cdn-icons-png.flaticon.com/512/2354/2354266.png",
     email: "",
     password: "",
     confirm_password: "",
