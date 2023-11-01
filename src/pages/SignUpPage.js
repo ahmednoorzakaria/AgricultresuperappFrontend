@@ -32,3 +32,4 @@ return (
     </form>
    );
 }
+export default SignUp;
