@@ -8,9 +8,9 @@ const Nav = () => {
       <img className="logo" src={logo} alt="" />
       <ul>
         <li><a href="#">Home</a></li>
-        <li><a href="#">BLOGS</a></li>
+        <li><a href="#">Blogs</a></li>
         <li><a href="#">Communities</a></li>
-        <li><a href="#">Login</a></li>
+        <li><a href="#">Log-In</a></li>
       </ul>
     </div>
   );
