@@ -8,9 +8,9 @@ function App() {
   return (
     <Router>
       <div className="app-container">
-        <NavBar /> 
+        <NavBar />
         <Routes>
-          <Route path="/landing" element={<Page />} />
+          <Route path="/" element={<Page />} />
         </Routes>
       </div>
     </Router>
