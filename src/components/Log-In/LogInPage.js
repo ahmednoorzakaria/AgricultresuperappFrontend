@@ -1,22 +1,6 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-const LogIn = ({ handleLogin }) => {
-  const formSchema = yup.object().shape({
-    username: yup.string().email("Invalid email").required("Must enter email"),
-    password: yup.string().required("Must enter a password").min(5),
-  });
-
-  const formik = useFormik({
-    initialValues: {
-      username: "",
-      password: "",
-    },
-    validationSchema: formSchema,
-    onSubmit: (values) => {
-      handleLogin(values, formik.setSubmitting);
-    },
-  });
   return (
     <div className="login-page">
       <div className="login-card">
