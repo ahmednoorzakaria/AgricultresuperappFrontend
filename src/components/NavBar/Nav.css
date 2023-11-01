@@ -1,0 +1,10 @@
+/* Add this CSS to your Nav.css file */
+/* .navbar ul li a {
+    color: brown;
+    text-decoration: none;
+} */
+
+.navbar ul li a:hover {
+    color: green;
+    border-radius: 10px;
+}
