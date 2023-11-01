@@ -45,10 +45,10 @@ body {
   }
 
   a {
-    color: #007bff;
+    color: rgb(83, 85, 231);
     text-decoration: none;
   }
   
   a:hover {
-    color: #22d33a;
+    color: #eeeeee;
   }
