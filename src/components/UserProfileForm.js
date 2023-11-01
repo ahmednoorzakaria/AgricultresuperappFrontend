@@ -5,8 +5,8 @@ import axios from "axios";
 import dayjs from "dayjs";
 // import { toast } from "react-toastify";
 // import {
-  //getHTTPHeaderWithToken,
-  //getSendingDataSpinner,
+//getHTTPHeaderWithToken,
+//getSendingDataSpinner,
 //} // from "../utils/functions";
 //import { AuthContext } from "../utils/functions";
 
@@ -45,7 +45,7 @@ const UserProfileForm = ({ userProfileData }) => {
       })
       .catch((err) => {
         formik.setSubmitting(false);
-        toast.error("Error occured while creating account", {
+        toast.error("Error occurred while creating account", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -93,7 +93,7 @@ const UserProfileForm = ({ userProfileData }) => {
       })
       .catch((err) => {
         formik.setSubmitting(false);
-        toast.error("Error occured while creating account", {
+        toast.error("Error occurred while updating account", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -108,15 +108,18 @@ const UserProfileForm = ({ userProfileData }) => {
   const formSchema = yup.object().shape({
     first_name: yup.string().required("First name required"),
     last_name: yup.string().required("Last name required"),
-    username: yup.string().email().required("usename required"),
+    username: yup.string().email().required("Username required"),
     bio: yup.string(),
     profile_picture: yup.string(),
-    email: yup.string().email().required("email required"),
+    email: yup.string().email().required("Email required"),
     password: yup.string().required("Password required"),
     confirm_password: yup
       .string()
-      .oneOf([yup.ref("password"), null], "Password must much")
+      .oneOf([yup.ref("password"), null], "Password must match")
       .required("Required"),
+    date_of_birth: yup.date().max(eighteen_years_ago, "Must be at least 18 years old"),
+    contact: yup.string(),
+    identification_card: yup.string(),
   });
   const formik = useFormik({
     enableReinitialize: true,
@@ -129,6 +132,9 @@ const UserProfileForm = ({ userProfileData }) => {
       email: userProfileData.email,
       password: "",
       confirm_password: "",
+      date_of_birth: userProfileData.date_of_birth,
+      contact: userProfileData.contact,
+      identification_card: userProfileData.identification_card,
     },
     validationSchema: formSchema,
     onSubmit: (user) => {
@@ -175,12 +181,12 @@ const UserProfileForm = ({ userProfileData }) => {
       </div>
       <div className="form-group">
         <div className="form-control">
-          <label htmlFor="username">UserName</label>
+          <label htmlFor="username">Username</label>
           <input
             type="email"
             name="username"
             id="username"
-            placeholder="use your email"
+            placeholder="Use your email"
             onChange={formik.handleChange}
             value={formik.values.username}
           />
@@ -221,7 +227,55 @@ const UserProfileForm = ({ userProfileData }) => {
               ? formik.errors.profile_picture
               : null}
           </span>
-          </div>
+        </div>
+        <div className="form-control">
+          <label htmlFor="date_of_birth">Date of Birth</label>
+          <input
+            type="date"
+            name="date_of_birth"
+            id="date_of_birth"
+            onChange={formik.handleChange}
+            value={formik.values.date_of_birth}
+          />
+          <span className="error">
+            {formik.touched.date_of_birth && formik.errors.date_of_birth
+              ? formik.errors.date_of_birth
+              : null}
+          </span>
+        </div>
+      </div>
+      <div className="form-group">
+        <div className="form-control">
+          <label htmlFor="contact">Contact Number</label>
+          <input
+            type="tel"
+            name="contact"
+            id="contact"
+            onChange={formik.handleChange}
+            value={formik.values.contact}
+          />
+          <span className="error">
+            {formik.touched.contact && formik.errors.contact
+              ? formik.errors.contact
+              : null}
+          </span>
+        </div>
+        <div className="form-control">
+          <label htmlFor="identification_card">National ID</label>
+          <input
+            type="text"
+            name="identification_card"
+            id="identification_card"
+            onChange={formik.handleChange}
+            value={formik.values.identification_card}
+          />
+          <span className="error">
+            {formik.touched.identification_card &&
+              formik.errors.identification_card
+              ? formik.errors.identification_card
+              : null}
+          </span>
+        </div>
       </div>
       <div className="form-group">
         <div className="form-control">
