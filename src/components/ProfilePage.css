@@ -58,47 +58,48 @@ header {
 
 /* Bio section styles */
 .bio-section {
-  padding: 20px;
   background-color: #fff;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e1e1e1;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.edit-bio-button {
+.bio-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.bio-section p {
+  font-size: 1rem;
+  color: #666;
+  margin: 5px 0;
+}
+
+.bio-section textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e1e1e1;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin: 10px 0;
+}
+
+.bio-section .edit-bio-button {
   background-color: #0095f6;
   color: #fff;
   border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
   cursor: pointer;
 }
 
-/* Blog/Post section styles */
-.blog-post-section {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  margin: 10px 0;
-  padding: 20px;
+.bio-section .edit-bio-button:hover {
+  background-color: #0077b5;
 }
 
-.blog-post h2 {
-  font-size: 20px;
+.bio-section .edit-bio-button:focus {
+  outline: none;
 }
-
-.blog-post p {
-  color: #999;
-}
-
-.create-post-button {
-  background-color: #0095f6;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  cursor: pointer;
-}
-
