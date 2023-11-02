@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import "./Landingpage.css";
 import Nav from "../NavBar/Nav";
-import NavBar from "../NavBar/NavBar"; // Import the Nav component
+import NavBar from "../NavBar/NavBar"; 
 import CustomCard from "../Card/Card";
 import cardData from "../data";
 import AddBlogOptions from "../AddBlogs/AddBlog";
@@ -20,8 +20,8 @@ const Page = () => {
 
     return (
         <div className="page-container">
-            <Nav /> {/* Include the Nav component here */}
-            <NavBar /> {/* Include the NavBar component here */}
+            <Nav />
+            <NavBar /> 
 
             <div className="d-flex" id="wrapper">
                 <div className="border-end bg-white" id="sidebar-wrapper" style={{ width: "500px" }}>
