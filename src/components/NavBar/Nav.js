@@ -12,6 +12,7 @@ const Nav = () => {
         <li><a href="#">BLOGS</a></li>
         <li><a href="#">Communities</a></li>
         <li><Link to="/login">Login</Link></li> {/* Link to the "Login" component */}
+
       </ul>
     </div>
   );

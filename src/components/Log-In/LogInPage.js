@@ -1,73 +1,67 @@
-import { useFormik } from "formik";
-import * as yup from "yup";
+import React from "react";
 
-const LogIn = ({ handleLogin }) => {
-  const formSchema = yup.object().shape({
-    username: yup.string().email("Invalid email").required("Must enter email"),
-    password: yup.string().required("Must enter a password").min(5),
-  });
 
-  const formik = useFormik({
-    initialValues: {
-      username: "",
-      password: "",
-    },
-    validationSchema: formSchema,
-    onSubmit: (values) => {
-      handleLogin(values, formik.setSubmitting);
-    },
-  });
+function Login() {
   return (
-    <div className="login-page">
-      <div className="login-card">
-        <div className="login-text">
-          <h1>Login</h1>
-        </div>
-        <form className="login-form" onSubmit={formik.handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <div className="form-control">
-              <i className="fa fa-user-o" aria-hidden="true"></i>
-              <input
-                type="text"
-                name="username"
-                id="username"
-                placeholder="Type your email"
-                onChange={formik.handleChange}
-                value={formik.values.username}
-              />
+    <div>
+
+      <div className="tab-content">
+        <div className="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+          <form>
+            <div className="text-center mb-3">
+              <p>Sign in with:</p>
+              <button type="button" className="btn btn-link btn-floating mx-1">
+                <i className="fab fa-facebook-f"></i>
+              </button>
+
+              <button type="button" className="btn btn-link btn-floating mx-1">
+                <i className="fab fa-google"></i>
+              </button>
+
+              <button type="button" className="btn btn-link btn-floating mx-1">
+                <i className="fab fa-twitter"></i>
+              </button>
+
+              <button type="button" className="btn btn-link btn-floating mx-1">
+                <i className="fab fa-github"></i>
+              </button>
             </div>
-            <p className="error">{formik.errors.username}</p>
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <div className="form-control">
-              <i className="fa fa-unlock-alt" aria-hidden="true"></i>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="Type your password"
-                onChange={formik.handleChange}
-                value={formik.values.password}
-              />
+
+            <p className="text-center">or:</p>
+
+            <div className="form-outline mb-4">
+              <input type="email" id="loginName" className="form-control" />
+              <label className="form-label" htmlFor="loginName">Email or username</label>
             </div>
-            <p className="error">{formik.errors.password}</p>
-          </div>
-          <div className="form-group">
-            {formik.isSubmitting ? (
-              <div className="spinner-loader">{getSendingDataSpinner()}</div>
-            ) : (
-              <input type="submit" value="LOGIN" />
-            )}
-          </div>
-        </form>
-        <div className="or-link">
-          {/* You don't have an account <Link to="/signup">Signup</Link> */}
+
+            <div className="form-outline mb-4">
+              <input type="password" id="loginPassword" className="form-control" />
+              <label className="form-label" htmlFor="loginPassword">Password</label>
+            </div>
+
+            <div className="row mb-4">
+              <div className="col-md-6 d-flex justify-content-center">
+                <div className="form-check mb-3 mb-md-0">
+                  <input className="form-check-input" type="checkbox" value="" id="loginCheck" defaultChecked />
+                  <label className="form-check-label" htmlFor="loginCheck"> Remember me </label>
+                </div>
+              </div>
+
+              <div className="col-md-6 d-flex justify-content-center">
+                <a href="#!">Forgot password?</a>
+              </div>
+            </div>
+
+            <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
+
+            <div className="text-center">
+              <p>Not a member? <a href="../SignUp">Sign-Up</a></p>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   );
-};
+}
 
-export default LogIn;
+export default Login;
