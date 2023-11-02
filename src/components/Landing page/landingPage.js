@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import "./Landingpage.css";
-import Nav from "../NavBar/Nav";
 import CustomCard from "../Card/Card";
 import cardData from "../data";
 import AddBlogOptions from "../AddBlogs/AddBlog";
+import Navbar from "../NavBar/NavBar";
 
 const Page = () => {
     const [isAddBlogOpen, setIsAddBlogOpen] = useState(false);
@@ -19,16 +19,14 @@ const Page = () => {
 
     return (
         <div className="page-container">
-            {/* Remove the Navbar component */}
+            <Navbar />
             <div className="d-flex" id="wrapper">
                 <div className="border-end bg-white" id="sidebar-wrapper" style={{ width: "500px" }}>
                     <div className="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
                     <div className="list-group list-group-flush"></div>
                 </div>
                 <div id="page-content-wrapper">
-                    <Nav />
                     <div className="container-fluid">
-                        <h1 className="mt-4">Simple Sidebar</h1>
                         <button onClick={openAddBlog} className="add-blog-button">
                             Add Blog
                         </button>

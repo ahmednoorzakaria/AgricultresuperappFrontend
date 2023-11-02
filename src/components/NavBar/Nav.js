@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "./Cultural.png";
-import "./Nav.css"
+import "./Nav.css"; // Import a CSS file for styling
 
 const Nav = () => {
   return (
@@ -18,3 +18,4 @@ const Nav = () => {
 };
 
 export default Nav;
+
