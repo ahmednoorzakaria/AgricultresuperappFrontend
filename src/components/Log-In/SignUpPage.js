@@ -1,4 +1,5 @@
 import React from "react";
+import './/SignUpPage.css'
 
 function Signup() {
   return (
@@ -8,25 +9,8 @@ function Signup() {
         <div className="tab-pane fade show active" id="pills-signup" role="tabpanel" aria-labelledby="tab-signup">
           <form>
             <div class="text-center mb-3">
-              <p>Sign up with:</p>
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-facebook-f"></i>
-              </button>
-
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-google"></i>
-              </button>
-
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-twitter"></i>
-              </button>
-
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-github"></i>
-              </button>
+              <p>Sign Up with:</p>
             </div>
-
-            <p class="text-center">or:</p>
 
             <div class="form-outline mb-4">
               <input type="text" id="registerName" class="form-control" />
@@ -66,10 +50,12 @@ function Signup() {
               </label>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+            <div>
+              <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+            </div>
 
             <div className="text-center">
-              <p>Already a member? <a href="../LogInPage.js">Log-In</a></p>
+              <p>Already a member? <a href="/Login">Log-In</a></p>
             </div>
           </form>
         </div>

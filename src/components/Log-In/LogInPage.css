@@ -1,18 +1,11 @@
 body {
     font-family: Arial, sans-serif;
   }
-  
-  .logInPage {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.5); /* white background with 50% opacity */
-  }
 
   .tab-content {
     max-width: 500px;
     margin: auto;
+    margin-top: 150px;
     background: #f4f4f4;
     padding: 20px;
     border-radius: 4px;
@@ -45,7 +38,7 @@ body {
   }
 
   a {
-    color: #007bff;
+    color: #0D6EFD;
     text-decoration: none;
   }
   

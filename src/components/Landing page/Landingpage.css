@@ -1,42 +1,34 @@
-/* Page.css */
+/* Landingpage.css for the second code snippet */
+
 .card-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 50px; /* Adjust the gap as needed */
 }
 
 .card-list .card {
   width: 31%;
-  /* Each card takes 31% of the container width */
   margin-bottom: 20px;
   transition: transform 0.2s;
-  /* Add a smooth transition effect */
 }
 
 .card-list .card:hover {
   transform: scale(1.05);
-  /* Scale the card on hover to make it appear larger */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  /* Add a box shadow to create a highlight effect */
   z-index: 1;
-  /* Bring the card to the front when hovered */
 }
 
-/* Add this CSS to make the sidebars sticky */
 .sidebar {
   position: sticky;
   top: 0;
   height: 100vh;
-  /* Set a fixed height for the sidebar */
   overflow-y: auto;
-  /* Add scrolling for content within the sidebar */
 }
 
 .content {
   flex-grow: 1;
-  /* Allow the content to grow and fill the available space */
   padding: 20px;
-  /* Add padding to the content area */
 }
 
 body.overlay-active {

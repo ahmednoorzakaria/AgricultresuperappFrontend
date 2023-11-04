@@ -15,7 +15,7 @@ function App() {
           <Route path="/" element={<Page />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/blog/:id" element={<BlogDetails />} /> {/* Use the :id parameter */}
+          <Route path="/blog/:id" element={<BlogDetails />} />
         </Routes>
       </div>
     </Router>

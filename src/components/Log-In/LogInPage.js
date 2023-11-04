@@ -1,33 +1,15 @@
 import React from "react";
-
+import './/LogInPage.css'
 
 function Login() {
   return (
     <div>
-
       <div className="tab-content">
         <div className="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
           <form>
             <div className="text-center mb-3">
-              <p>Sign in with:</p>
-              <button type="button" className="btn btn-link btn-floating mx-1">
-                <i className="fab fa-facebook-f"></i>
-              </button>
-
-              <button type="button" className="btn btn-link btn-floating mx-1">
-                <i className="fab fa-google"></i>
-              </button>
-
-              <button type="button" className="btn btn-link btn-floating mx-1">
-                <i className="fab fa-twitter"></i>
-              </button>
-
-              <button type="button" className="btn btn-link btn-floating mx-1">
-                <i className="fab fa-github"></i>
-              </button>
+              <p>Log In with:</p>
             </div>
-
-            <p className="text-center">or:</p>
 
             <div className="form-outline mb-4">
               <input type="email" id="loginName" className="form-control" />
@@ -52,10 +34,12 @@ function Login() {
               </div>
             </div>
 
-            <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
+            <div className="button container">
+              <button type="submit" className="btn btn-primary btn-block mb-4">Log-In</button>
+            </div>
 
             <div className="text-center">
-              <p>Not a member? <a href="../SignUp">Sign-Up</a></p>
+              <p>Not a member? <a href="/Signup">Sign-Up</a></p>
             </div>
           </form>
         </div>
