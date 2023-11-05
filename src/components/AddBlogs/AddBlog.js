@@ -54,7 +54,6 @@ function AddBlogOptions({ onClose }) {
             return;
         }
 
-        // Create a new blog object based on the user input
         const newBlogEntry = {
             id: cardData.length + 1, // Generate a new unique ID
             imgSrc: newBlog.imgSrc,
@@ -84,7 +83,6 @@ function AddBlogOptions({ onClose }) {
         document.body.classList.add('overlay-active');
 
         return () => {
-            // Remove the 'overlay-active' class from the body when the component unmounts
             document.body.classList.remove('overlay-active');
         };
     }, []);

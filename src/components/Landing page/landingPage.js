@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import BlogDetails from "../BlogDetails/BlogDetails"; 
+import BlogDetails from "../BlogDetails/BlogDetails";
 import Sidebar from "../Sidebar/Sidebar";
 import "./Landingpage.css";
 import Nav from "../NavBar/Nav";
@@ -52,7 +52,7 @@ const Page = () => {
                                         text={card.text}
                                     />
                                     <Link
-                                        to={`/blog/${card.id}`} 
+                                        to={`/blog/${card.id}`}
                                         className="read-more-link"
                                         onClick={() => handleReadMore(card.id)}
                                     >
