@@ -8,7 +8,7 @@ const Nav = () => {
     <div className="navbar">
       <img className="logo" src={logo} alt="" />
       <ul>
-        <li><Link to="#">Home</Link></li>
+        <li><Link to="/">Home</Link></li>
         <li><Link to="#">Blogs</Link></li>
         <li><Link to="#">Communities</Link></li>
         <li><Link to="/Login">Log-In</Link></li>
@@ -18,4 +18,3 @@ const Nav = () => {
 };
 
 export default Nav;
-

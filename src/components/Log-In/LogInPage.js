@@ -4,7 +4,6 @@ import './/LogInPage.css'
 function Login() {
   return (
     <div>
-
       <div className="tab-content">
         <div className="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
           <form>
