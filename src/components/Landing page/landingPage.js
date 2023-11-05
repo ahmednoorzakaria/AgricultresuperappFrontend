@@ -9,7 +9,7 @@ import CustomCard from "../Card/Card";
 import cardData from "../data";
 import AddBlogOptions from "../AddBlogs/AddBlog";
 
-const Page = () => {
+const Page = ({ loggedInUser }) => {
     const [isAddBlogOpen, setIsAddBlogOpen] = useState(false);
     const [selectedBlogId, setSelectedBlogId] = useState(null);
 
@@ -27,7 +27,7 @@ const Page = () => {
 
     return (
         <div className="page-container">
-            <Nav />
+
             <NavBar />
 
             <div className="d-flex" id="wrapper">
