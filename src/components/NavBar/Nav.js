@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import logo from "./Cultural.png";
 import "./Nav.css";
 
-const Nav = ({ loggedInUser }) => {  return (
+const Nav = ({ loggedInUser }) => {
+  return (
     <div className="navbar">
       <img className="logo" src={logo} alt="" />
       <ul>

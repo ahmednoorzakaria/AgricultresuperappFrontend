@@ -86,3 +86,30 @@
 .comments-section.show {
     right: 0;
 }
+
+.comment-list {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+}
+
+.comment-item {
+    display: flex;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}
+
+.comment-item .comment-action-icon {
+    margin-right: 8px;
+}
+
+.comment-reply-item {
+    margin-left: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}

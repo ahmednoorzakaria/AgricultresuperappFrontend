@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import cardData from "../data";
 import "./BlogDetails.css";
+
 const BlogDetails = () => {
     const { id } = useParams();
     const blog = cardData.find((item) => item.id === parseInt(id, 10));
@@ -10,22 +11,28 @@ const BlogDetails = () => {
         return <div className="blog-details-container">Blog not found</div>;
     }
 
-    const [likes, setLikes] = useState(0);
-    const [showComments, setShowComments] = useState(false);
-    const [comments, setComments] = useState([]);
     const [likeClicked, setLikeClicked] = useState(false);
+    const [comments, setComments] = useState([]);
+    const [showComments, setShowComments] = useState(false);
 
-    const handleLike = () => {
-        setLikes(likes + (likeClicked ? -1 : 1));
-        setLikeClicked(!likeClicked);
+    const handleLikeComment = (commentIndex) => {
+        const updatedComments = [...comments];
+        updatedComments[commentIndex].likes = !updatedComments[commentIndex].likes;
+        setComments(updatedComments);
     };
 
-    const handleComment = () => {
+    const handleReplyComment = (commentIndex, newReply) => {
+        const updatedComments = [...comments];
+        updatedComments[commentIndex].replies.push({ text: newReply, likes: false });
+        setComments(updatedComments);
+    };
+
+    const handleShowComments = () => {
         setShowComments(!showComments);
     };
 
     const addComment = (newComment) => {
-        setComments([...comments, newComment]);
+        setComments([...comments, { text: newComment, likes: false, replies: [] }]);
     };
 
     return (
@@ -37,19 +44,54 @@ const BlogDetails = () => {
                     <p className="blog-text">{blog.text}</p>
                 </div>
                 <div className="blog-actions">
-                    <i className={`fa fa-heart blog-action-icon ${likeClicked ? "liked" : ""}`} onClick={handleLike} style={{ fontSize: 40 }}></i>
-                    <i className={`fa fa-commenting-o blog-action-icon ${showComments ? "active" : ""}`} onClick={handleComment} style={{ fontSize: 40 }}></i>
+                    <i
+                        className={`fa fa-heart blog-action-icon ${likeClicked ? "liked" : ""}`}
+                        onClick={() => setLikeClicked(!likeClicked)}
+                        style={{ fontSize: 40 }}
+                    ></i>
+                    <i
+                        className={`fa fa-commenting-o blog-action-icon ${showComments ? "active" : ""}`}
+                        onClick={handleShowComments}
+                        style={{ fontSize: 40 }}
+                    ></i>
                 </div>
-
             </div>
 
-            <div className={`comments-section ${showComments ? "show" : ""}`}>
-                {showComments && (
+            {showComments && (
+                <div className="comments-section">
                     <div>
                         <h3>Comments</h3>
-                        <ul>
-                            {comments.map((comment, index) => (
-                                <li key={index}>{comment}</li>
+                        <ul className="comments-list">
+                            {comments.map((comment, commentIndex) => (
+                                <li key={commentIndex}>
+                                    <div className="comment-item">
+                                        {comment.text}
+                                        <span onClick={() => handleLikeComment(commentIndex)} className="comment-action-icon">
+                                            <i className={`fa fa-thumbs-up ${comment.likes ? "liked" : ""}`}></i>
+                                        </span>
+                                        <span
+                                            onClick={() => {
+                                                const newReply = window.prompt("Reply to this comment:");
+                                                if (newReply !== null) {
+                                                    handleReplyComment(commentIndex, newReply);
+                                                }
+                                            }}
+                                            className="comment-action-icon"
+                                        >
+                                            <i className={`fa fa-reply`}></i>
+                                        </span>
+                                        <ul className="comment-replies">
+                                            {comment.replies.map((reply, replyIndex) => (
+                                                <li key={replyIndex} className="comment-reply-item">
+                                                    {reply.text}
+                                                    <span onClick={() => handleLikeComment(replyIndex)} className="comment-action-icon">
+                                                        <i className={`fa fa-thumbs-up ${reply.likes ? "liked" : ""}`}></i>
+                                                    </span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </li>
                             ))}
                         </ul>
                         <textarea
@@ -62,8 +104,8 @@ const BlogDetails = () => {
                             }}
                         />
                     </div>
-                )}
-            </div>
+                </div>
+            )}
         </div>
     );
 };
