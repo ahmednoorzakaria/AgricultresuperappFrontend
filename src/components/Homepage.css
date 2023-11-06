@@ -248,8 +248,8 @@ li {
     position: fixed;
     top: 10%;
     left: 10%;
-    width: 80%;
-    height: 80%;
+    width: 100vw;
+    height: 100vh;
     background-color: rgba(61, 60, 60, 0.5);
     z-index: 1;
     display: flex;

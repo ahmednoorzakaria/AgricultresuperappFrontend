@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./AddBlog.css";
-import cardData from "../data"; // Import your data from data.js
+import cardData from "../data"; 
 
 function AddBlogOptions({ onClose }) {
     const [newBlog, setNewBlog] = useState({
@@ -63,7 +63,6 @@ function AddBlogOptions({ onClose }) {
             buttonLink: newBlog.buttonLink,
         };
 
-        // Push the new blog entry to the cardData array in data.js
         cardData.push(newBlogEntry);
 
         // Clear the form
@@ -79,7 +78,6 @@ function AddBlogOptions({ onClose }) {
     };
 
     useEffect(() => {
-        // Add the 'overlay-active' class to the body to prevent scrolling
         document.body.classList.add('overlay-active');
 
         return () => {
