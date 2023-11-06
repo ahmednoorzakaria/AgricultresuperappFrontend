@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./LogInPage.css";
 import Nav from "../NavBar/Nav"; // Import the Nav component
 
-function Login({ setLoggedInUser, loggedInUser, authToken, setAuthToken }) {
+function Login({ setLoggedInUser, loggedInUser }) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -22,12 +22,9 @@ function Login({ setLoggedInUser, loggedInUser, authToken, setAuthToken }) {
 
       if (response.data.proceed) {
         // If login is successful, set the logged-in user's name
-        console.log(response);
         setLoggedInUser(response.data.data.UserName);
-        setAuthToken(response.data.token);
 
-        localStorage.setItem("loggedInUser", response.data.token);
-        console.log("Login successful:", response.data.data.UserName);
+        localStorage.setItem("jwtToken", response.data.token);
 
         // Redirect to the specified route after a successful login (in this case, "/")
         navigate("/");
