@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./AddBlog.css";
-import cardData from "../data"; 
-
+import cardData from "../data";
+import axios from "axios";
 function AddBlogOptions({ onClose }) {
     const [newBlog, setNewBlog] = useState({
-        imgSrc: "",
-        title: "",
-        text: "",
+        post_image: "",
+        post_heading: "",
+        post_content: "",
         buttonText: "Learn More",
         buttonLink: "",
     });
@@ -41,47 +41,63 @@ function AddBlogOptions({ onClose }) {
             reader.onload = (event) => {
                 setNewBlog({
                     ...newBlog,
-                    imgSrc: event.target.result,
+                    post_image: event.target.result,
                 });
             };
             reader.readAsDataURL(file);
         }
     };
 
-    const handleSubmit = () => {
-        if (!newBlog.imgSrc || !newBlog.title || !newBlog.text) {
+    const handleSubmit = async () => {
+        if (!newBlog.post_image || !newBlog.post_heading || !newBlog.post_content) {
             alert("Please fill in all mandatory fields");
             return;
         }
 
         const newBlogEntry = {
-            id: cardData.length + 1, // Generate a new unique ID
-            imgSrc: newBlog.imgSrc,
-            title: newBlog.title,
-            text: newBlog.text,
+            post_image: newBlog.post_image,
+            post_heading: newBlog.post_heading,
+            post_content: newBlog.post_content,
             buttonText: newBlog.buttonText,
             buttonLink: newBlog.buttonLink,
         };
 
-        cardData.push(newBlogEntry);
+        try {
+            const token = localStorage.getItem("jwtToken");
 
-        // Clear the form
-        setNewBlog({
-            imgSrc: "",
-            title: "",
-            text: "",
-            buttonText: "Learn More",
-            buttonLink: "",
-        });
+            if (!token) {
+                alert("Please sign in to create a new blog post.");
+                return;
+            }
 
-        onClose();
+            const headers = {
+                Authorization: token,
+            };
+
+            await axios.post("http://localhost:5000/api/blog/create", newBlogEntry, {
+                headers,
+            });
+
+            setNewBlog({
+                post_image: "",
+                post_heading: "",
+                post_content: "",
+                buttonText: "Learn More",
+                buttonLink: "",
+            });
+
+            onClose();
+            console.log("Blog post created successfully");
+        } catch (error) {
+            console.error("Error creating blog post:", error);
+        }
     };
 
     useEffect(() => {
-        document.body.classList.add('overlay-active');
+        document.body.classList.add("overlay-active");
 
         return () => {
-            document.body.classList.remove('overlay-active');
+            document.body.classList.remove("overlay-active");
         };
     }, []);
 
@@ -94,7 +110,7 @@ function AddBlogOptions({ onClose }) {
                     <input
                         type="file"
                         accept="image/*"
-                        name="imgFile"
+                        name="post_image"
                         onChange={handleImageUpload}
                     />
                 </div>
@@ -102,16 +118,16 @@ function AddBlogOptions({ onClose }) {
                     <label>Title:</label>
                     <input
                         type="text"
-                        name="title"
-                        value={newBlog.title}
+                        name="post_heading"
+                        value={newBlog.post_heading}
                         onChange={handleInputChange}
                     />
                 </div>
                 <div>
                     <label>Content:</label>
                     <textarea
-                        name="text"
-                        value={newBlog.text}
+                        name="post_content"
+                        value={newBlog.post_content}
                         onChange={handleInputChange}
                     />
                 </div>

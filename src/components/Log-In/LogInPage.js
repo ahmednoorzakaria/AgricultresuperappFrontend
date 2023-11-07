@@ -1,28 +1,28 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import './LogInPage.css';
-import Nav from "../NavBar/Nav"; // Import the Nav component
+import "./LogInPage.css";
+import Nav from "../NavBar/Nav";
 
 function Login({ setLoggedInUser }) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const navigate = useNavigate(); // Initialize navigate for navigation
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("https://agriconnect-3erw.onrender.com/api/users/Signin", formData);
+      const response = await axios.post(
+        "http://localhost:5000/api/users/Signin",
+        formData
+      );
 
       if (response.data.proceed) {
-        // If login is successful, set the logged-in user's name
-        setLoggedInUser(response.data.username); // Set loggedInUser in App
-        console.log("Login successful:", response.data.message);
-
-        // Redirect to the specified route after a successful login (in this case, "/")
+        setLoggedInUser(response.data.data.UserName);
+        localStorage.setItem("jwtToken", response.data.token);
         navigate("/");
       } else {
         console.error("Login failed:", response.data.message);
@@ -39,30 +39,49 @@ function Login({ setLoggedInUser }) {
 
   return (
     <div>
-
-        // Display the login form when not logged in
       <div className="tab-content">
-        <div className="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+        <div
+          className="tab-pane fade show active"
+          id="pills-login"
+          role="tabpanel"
+          aria-labelledby="tab-login"
+        >
           <form onSubmit={handleSubmit}>
             <div className="text-center mb-3">
               <p>Log In with:</p>
             </div>
 
-            <div className="form-outline mb-4">
-              <input type="text" id="loginName" className="form-control" name="email" onChange={handleInputChange} />
-              <label className="form-label" htmlFor="loginName">Email or username</label>
-            </div>
+            <FormInput
+              type="text"
+              id="loginName"
+              name="email"
+              label="Email or username"
+              value={formData.email}
+              onChange={handleInputChange}
+            />
 
-            <div className="form-outline mb-4">
-              <input type="password" id="loginPassword" className="form-control" name="password" onChange={handleInputChange} />
-              <label className="form-label" htmlFor="loginPassword">Password</label>
-            </div>
+            <FormInput
+              type="password"
+              id="loginPassword"
+              name="password"
+              label="Password"
+              value={formData.password}
+              onChange={handleInputChange}
+            />
 
             <div className="row mb-4">
               <div className="col-md-6 d-flex justify-content-center">
                 <div className="form-check mb-3 mb-md-0">
-                  <input className="form-check-input" type="checkbox" value="" id="loginCheck" defaultChecked />
-                  <label className="form-check-label" htmlFor="loginCheck"> Remember me </label>
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="loginCheck"
+                    defaultChecked
+                  />
+                  <label className="form-check-label" htmlFor="loginCheck">
+                    Remember me
+                  </label>
                 </div>
               </div>
 
@@ -72,15 +91,37 @@ function Login({ setLoggedInUser }) {
             </div>
 
             <div className="button container">
-              <button type="submit" className="btn btn-primary btn-block mb-4">Log-In</button>
+              <button type="submit" className="btn btn-primary btn-block mb-4">
+                Log-In
+              </button>
             </div>
 
             <div className="text-center">
-              <p>Not a member? <a href="/Signup">Sign-Up</a></p>
+              <p>
+                Not a member? <a href="/Signup">Sign-Up</a>
+              </p>
             </div>
           </form>
         </div>
       </div>
+    </div>
+  );
+}
+
+function FormInput({ type, id, name, label, value, onChange }) {
+  return (
+    <div className="form-outline mb-4">
+      <input
+        type={type}
+        id={id}
+        className="form-control"
+        name={name}
+        value={value}
+        onChange={onChange}
+      />
+      <label className="form-label" htmlFor={id}>
+        {label}
+      </label>
     </div>
   );
 }
