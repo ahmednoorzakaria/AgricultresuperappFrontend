@@ -1,15 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./AddBlog.css";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";// Import jwtDecode without destructuring
 
 function AddBlogOptions({ onClose }) {
   const [newBlog, setNewBlog] = useState({
+    user_id: "", // Initialize user_id with an empty string
     post_image: "",
     post_heading: "",
     post_content: "",
     buttonText: "Learn More",
     buttonLink: "",
   });
+  const token = localStorage.getItem("jwtToken");
+  const decodedToken = jwtDecode(token); // Decode the token to access user information
 
   const overlayRef = useRef();
 
@@ -54,23 +58,22 @@ function AddBlogOptions({ onClose }) {
       return;
     }
 
-    const newBlogEntry = {
-      post_image: newBlog.post_image,
-      post_heading: newBlog.post_heading,
-      post_content: newBlog.post_content,
-      buttonText: newBlog.buttonText,
-      buttonLink: newBlog.buttonLink,
-    };
-
     try {
-      // Obtain the JWT token from secure storage (e.g., cookies or local storage)
-      const token = localStorage.getItem("jwtToken");
-
-      if (!token) {
+      // Ensure the token is valid
+      if (!decodedToken) {
         // User is not authenticated
         alert("Please sign in to create a new blog post.");
         return;
       }
+
+      const newBlogEntry = {
+        user_id: decodedToken.id, // Access the user ID from the decoded token
+        post_image: newBlog.post_image,
+        post_heading: newBlog.post_heading,
+        post_content: newBlog.post_content,
+        buttonText: newBlog.buttonText,
+        buttonLink: newBlog.buttonLink,
+      };
 
       // Include the token in the request headers
       const headers = {
@@ -78,12 +81,17 @@ function AddBlogOptions({ onClose }) {
       };
 
       // Send the new blog data to the backend API with the JWT token
-      await axios.post("http://localhost:5000/api/blog/create", newBlogEntry, {
-        headers,
-      });
+      const response =  axios.post(
+        "http://localhost:5000/api/users/create",
+        newBlogEntry,
+        { headers }
+      );
+      console.log(response.data);
+      console.log(newBlogEntry);
 
-      // Clear the form and handle success as discussed in previous responses.
+      // Clear the form and handle success as needed
       setNewBlog({
+        user_id: "",
         post_image: "",
         post_heading: "",
         post_content: "",
@@ -92,7 +100,7 @@ function AddBlogOptions({ onClose }) {
       });
 
       onClose();
-      console.log("okkkkkkkkkkk");
+      console.log("Blog post created successfully");
     } catch (error) {
       console.error("Error creating blog post:", error);
     }

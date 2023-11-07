@@ -25,6 +25,7 @@ function Login({ setLoggedInUser, loggedInUser }) {
         setLoggedInUser(response.data.data.UserName);
 
         localStorage.setItem("jwtToken", response.data.token);
+        
 
         // Redirect to the specified route after a successful login (in this case, "/")
         navigate("/");
