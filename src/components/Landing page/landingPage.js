@@ -68,6 +68,14 @@ const Page = ({ loggedInUser }) => {
                     <div className="list-group list-group-flush"></div>
                 </div>
             </div>
+
+            <footer className="footer">
+                <div className="footer-links">
+                    <Link to="">Terms of Service</Link>
+                    <Link to="">Privacy Policy</Link>
+                </div>
+                <p>&copy; Copyright Roll Motion 2023. Rental Agreement.</p>
+            </footer>
         </div>
     );
 };

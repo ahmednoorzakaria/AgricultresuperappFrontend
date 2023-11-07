@@ -42,18 +42,18 @@ const BlogDetails = () => {
                 <div className="blog-content">
                     <h2 className="blog-title">{blog.title}</h2>
                     <p className="blog-text">{blog.text}</p>
-                </div>
-                <div className="blog-actions">
-                    <i
-                        className={`fa fa-heart blog-action-icon ${likeClicked ? "liked" : ""}`}
-                        onClick={() => setLikeClicked(!likeClicked)}
-                        style={{ fontSize: 40 }}
-                    ></i>
-                    <i
-                        className={`fa fa-commenting-o blog-action-icon ${showComments ? "active" : ""}`}
-                        onClick={handleShowComments}
-                        style={{ fontSize: 40 }}
-                    ></i>
+                    <div className="blog-actions">
+                        <i
+                            className={`fa fa-heart blog-action-icon ${likeClicked ? "liked" : ""}`}
+                            onClick={() => setLikeClicked(!likeClicked)}
+                            style={{ fontSize: 40 }}
+                        ></i>
+                        <i
+                            className={`fa fa-commenting-o blog-action-icon ${showComments ? "active" : ""}`}
+                            onClick={handleShowComments}
+                            style={{ fontSize: 40 }}
+                        ></i>
+                    </div>
                 </div>
             </div>
 
@@ -63,34 +63,38 @@ const BlogDetails = () => {
                         <h3>Comments</h3>
                         <ul className="comments-list">
                             {comments.map((comment, commentIndex) => (
-                                <li key={commentIndex}>
-                                    <div className="comment-item">
-                                        {comment.text}
-                                        <span onClick={() => handleLikeComment(commentIndex)} className="comment-action-icon">
-                                            <i className={`fa fa-thumbs-up ${comment.likes ? "liked" : ""}`}></i>
-                                        </span>
-                                        <span
-                                            onClick={() => {
-                                                const newReply = window.prompt("Reply to this comment:");
-                                                if (newReply !== null) {
-                                                    handleReplyComment(commentIndex, newReply);
-                                                }
-                                            }}
-                                            className="comment-action-icon"
-                                        >
-                                            <i className={`fa fa-reply`}></i>
-                                        </span>
-                                        <ul className="comment-replies">
-                                            {comment.replies.map((reply, replyIndex) => (
-                                                <li key={replyIndex} className="comment-reply-item">
-                                                    {reply.text}
-                                                    <span onClick={() => handleLikeComment(replyIndex)} className="comment-action-icon">
-                                                        <i className={`fa fa-thumbs-up ${reply.likes ? "liked" : ""}`}></i>
-                                                    </span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
+                                <li key={commentIndex} className="comment-item">
+                                    {comment.text}
+                                    <span
+                                        onClick={() => handleLikeComment(commentIndex)}
+                                        className="comment-action-icon"
+                                    >
+                                        <i className={`fa fa-thumbs-up ${comment.likes ? "liked" : ""}`}></i>
+                                    </span>
+                                    <span
+                                        onClick={() => {
+                                            const newReply = window.prompt("Reply to this comment:");
+                                            if (newReply !== null) {
+                                                handleReplyComment(commentIndex, newReply);
+                                            }
+                                        }}
+                                        className="comment-action-icon"
+                                    >
+                                        <i className={`fa fa-reply`}></i>
+                                    </span>
+                                    <ul className="comment-replies">
+                                        {comment.replies.map((reply, replyIndex) => (
+                                            <li key={replyIndex} className="comment-reply-item">
+                                                {reply.text}
+                                                <span
+                                                    onClick={() => handleLikeComment(replyIndex)}
+                                                    className="comment-action-icon"
+                                                >
+                                                    <i className={`fa fa-thumbs-up ${reply.likes ? "liked" : ""}`}></i>
+                                                </span>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </li>
                             ))}
                         </ul>

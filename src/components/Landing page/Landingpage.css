@@ -1,11 +1,8 @@
-/* Landingpage.css for the second code snippet */
-
 .card-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 50px;
-  /* Adjust the gap as needed */
 }
 
 .card-list .card {
@@ -34,4 +31,44 @@
 
 body.overlay-active {
   overflow: hidden;
+}
+
+.footer {
+  background: rgba(159, 159, 159, 0.3);
+  box-shadow: 0 -3px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  z-index: 999;
+  min-height: 60px;
+  overflow: hidden;
+}
+
+
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+  gap: 100px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+}
+
+.footer a {
+  text-decoration: none;
+  color: black;
+  margin-right: 20px;
+}
+
+.footer a:hover {
+  text-decoration: underline;
 }
