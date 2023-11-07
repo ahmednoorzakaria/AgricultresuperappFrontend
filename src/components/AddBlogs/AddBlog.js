@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./AddBlog.css";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";// Import jwtDecode without destructuring
+import { jwtDecode } from "jwt-decode"; // Import jwtDecode without destructuring
 
 function AddBlogOptions({ onClose }) {
   const [newBlog, setNewBlog] = useState({
-    user_id: "", // Initialize user_id with an empty string
-    post_image: "",
+    user_id: "",
+    post_image: "", // Initialize post_image with an empty string
     post_heading: "",
     post_content: "",
     buttonText: "Learn More",
     buttonLink: "",
   });
   const token = localStorage.getItem("jwtToken");
-  const decodedToken = jwtDecode(token); // Decode the token to access user information
+  const decodedToken = jwtDecode(token);
 
   const overlayRef = useRef();
 
@@ -38,20 +38,6 @@ function AddBlogOptions({ onClose }) {
     });
   };
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        setNewBlog({
-          ...newBlog,
-          post_image: event.target.result, // Updated to match state property
-        });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
   const handleSubmit = async () => {
     if (!newBlog.post_image || !newBlog.post_heading || !newBlog.post_content) {
       alert("Please fill in all mandatory fields");
@@ -59,37 +45,33 @@ function AddBlogOptions({ onClose }) {
     }
 
     try {
-      // Ensure the token is valid
       if (!decodedToken) {
-        // User is not authenticated
         alert("Please sign in to create a new blog post.");
         return;
       }
 
       const newBlogEntry = {
-        user_id: decodedToken.id, // Access the user ID from the decoded token
-        post_image: newBlog.post_image,
+        user_id: decodedToken.id,
+        post_image: newBlog.post_image, // Store the image URL
         post_heading: newBlog.post_heading,
         post_content: newBlog.post_content,
         buttonText: newBlog.buttonText,
         buttonLink: newBlog.buttonLink,
       };
 
-      // Include the token in the request headers
       const headers = {
         Authorization: token,
       };
 
-      // Send the new blog data to the backend API with the JWT token
-      const response =  axios.post(
+      const response = axios.post(
         "http://localhost:5000/api/users/create",
         newBlogEntry,
         { headers }
       );
+
       console.log(response.data);
       console.log(newBlogEntry);
 
-      // Clear the form and handle success as needed
       setNewBlog({
         user_id: "",
         post_image: "",
@@ -107,11 +89,8 @@ function AddBlogOptions({ onClose }) {
   };
 
   useEffect(() => {
-    // Add the 'overlay-active' class to the body to prevent scrolling
     document.body.classList.add("overlay-active");
-
     return () => {
-      // Remove the 'overlay-active' class from the body when the component unmounts
       document.body.classList.remove("overlay-active");
     };
   }, []);
@@ -121,12 +100,12 @@ function AddBlogOptions({ onClose }) {
       <div className="add-blog-content">
         <h2>Add a New Blog</h2>
         <div>
-          <label>Image Upload:</label> <br />
+          <label>Image URL:</label> <br />
           <input
-            type="file"
-            accept="image/*"
+            type="text"
             name="post_image"
-            onChange={handleImageUpload}
+            value={newBlog.post_image}
+            onChange={handleInputChange}
           />
         </div>
         <div>
