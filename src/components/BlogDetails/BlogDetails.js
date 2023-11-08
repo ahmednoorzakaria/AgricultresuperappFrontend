@@ -35,13 +35,31 @@ const BlogDetails = () => {
     setLikeClicked(!likeClicked);
   };
 
+
   const handleComment = () => {
     setShowComments(!showComments);
+    setComments(blog.comments)
   };
 
   const addComment = (newComment) => {
     setComments([...comments, newComment]);
   };
+
+  const handleAddComment = (newComment) => {
+    axios.put(`http://localhost:5000/api/users/individualPosts/${id}`,newComment)
+    .then((response) => {
+
+         // Handle the response if needed (e.g., update the UI)
+         console.log("Comment added successfully");
+         console.log(response.data);
+        })
+        .catch((error) => {
+            // Handle any errors
+            console.error("Error adding comment:", error);
+        });
+
+    
+  }
 
   return (
     <div className="blog-details-container">
@@ -75,13 +93,19 @@ const BlogDetails = () => {
             <h3>Comments</h3>
             <ul>
               {comments.map((comment, index) => (
-                <li key={index}>{comment}</li>
-              ))}
+                <div>
+                <h2>User:{comment.user_id}</h2>
+                <h4 key={index}>{comment.comment_content}</h4>
+              
+
+                </div>
+                ))}
             </ul>
             <textarea
               placeholder="Add a comment..."
               onKeyUp={(e) => {
                 if (e.key === "Enter") {
+                  handleAddComment(newComment)
                   addComment(e.target.value);
                   e.target.value = "";
                 }
