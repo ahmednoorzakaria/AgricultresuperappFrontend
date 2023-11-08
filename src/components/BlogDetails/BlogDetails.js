@@ -6,7 +6,7 @@ import axios from "axios";
 import "./BlogDetails.css";
 const BlogDetails = () => {
   const { id } = useParams();
-  const [blog, setBlog] = useState(null);
+  const [blog, setBlog] = useState({});
   const [likes, setLikes] = useState(0);
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState([]);
@@ -15,7 +15,7 @@ const BlogDetails = () => {
   useEffect(() => {
     // Fetch the blog post from the server based on the ID
     axios
-      .get(`http://localhost:5000/api/users/posts/${id}`)
+      .get(`http://localhost:5000/api/users/individualPosts/${id}`)
       .then((response) => {
         setBlog(response.data);
         console.log(response.data)
@@ -46,10 +46,10 @@ const BlogDetails = () => {
   return (
     <div className="blog-details-container">
       <div className="blog-card">
-        <img src={blog.imgSrc} alt={blog.title} className="blog-image" />
+        <img src={blog.post_image} alt={blog.title} className="blog-image" />
         <div className="blog-content">
-          <h2 className="blog-title">{blog.title}</h2>
-          <p className="blog-text">{blog.text}</p>
+          <h2 className="blog-title">{blog.post_heading}</h2>
+          <p className="blog-text">{blog.post_content}</p>
         </div>
         <div className="blog-actions">
           <i

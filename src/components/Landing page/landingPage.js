@@ -70,7 +70,7 @@ const Page = ({ loggedInUser }) => {
                                     <Link
                                         to={`/blog/${card._id}`} 
                                         className="read-more-link"
-                                        onClick={() => handleReadMore(card.title)}
+                                        onClick={() => handleReadMore(card._id)}
                                     >
                                         Read More
                                     </Link>
