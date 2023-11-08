@@ -34,10 +34,10 @@
 
 <li>Here are the features of our web application:
 
- - *Viewing and Updating of User Profiles.*
- - *Liking and Commenting under Posts.*
- - *Following of other users.*
- - *Accurate Weather Display.*
+  - *Viewing and Updating of User Profiles.*
+  - *Liking and Commenting under Posts.*
+  - *Following of other users.*
+  - *Accurate Weather Display.*
 
 #### Known Bugs
 
@@ -45,7 +45,7 @@
 
 #### Support and contact details 
 
-<li>To make a contribution to the code used or any suggestions you can click on the contact link and email us your suggestions.
+To make a contribution to the code used or any suggestions you can click on the contact link and email us your suggestions.
 
 - Email: ahmednoor.zakaria@student.moringaschool.com
 - Email: abigael.mutuku@student.moringaschool.com
