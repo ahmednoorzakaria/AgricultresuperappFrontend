@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom"; 
 import {
   CCard,
   CCardImage,
@@ -7,15 +8,16 @@ import {
   CCardText,
   CButton,
 } from '@coreui/react';
+// import './CustomCard.css'; // Import your custom CSS file
 
 const CustomCard = ({ imgSrc, title, text, buttonText, buttonLink }) => {
   return (
-    <CCard style={{ width: '18rem' }}>
+    <CCard className="custom-card">
       <CCardImage orientation="top" src={imgSrc} />
       <CCardBody>
         <CCardTitle>{title}</CCardTitle>
-        <CCardText>{text}</CCardText>
-        <CButton href={buttonLink}>{buttonText}</CButton>
+        <CCardText className="custom-card-text">{text}</CCardText>
+        <CButton href={buttonLink}>Read More</CButton>
       </CCardBody>
     </CCard>
   );

@@ -1,38 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import cardData from "../data";
+import axios from "axios";
 import "./BlogDetails.css";
 
 const BlogDetails = () => {
     const { id } = useParams();
-    const blog = cardData.find((item) => item.id === parseInt(id, 10));
+    const [blog, setBlog] = useState(null);
+    const [likes, setLikes] = useState(0);
+    const [showComments, setShowComments] = useState(false);
+    const [comments, setComments] = useState([]);
+    const [likeClicked, setLikeClicked] = useState(false);
+
+    useEffect(() => {
+        axios
+            .get(`http://localhost:5000/api/users/posts/${id}`)
+            .then((response) => {
+                setBlog(response.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching blog post:", error);
+            });
+    }, [id]);
 
     if (!blog) {
         return <div className="blog-details-container">Blog not found</div>;
     }
 
-    const [likeClicked, setLikeClicked] = useState(false);
-    const [comments, setComments] = useState([]);
-    const [showComments, setShowComments] = useState(false);
-
-    const handleLikeComment = (commentIndex) => {
-        const updatedComments = [...comments];
-        updatedComments[commentIndex].likes = !updatedComments[commentIndex].likes;
-        setComments(updatedComments);
+    const handleLike = () => {
+        setLikes(likes + (likeClicked ? -1 : 1));
+        setLikeClicked(!likeClicked);
     };
 
-    const handleReplyComment = (commentIndex, newReply) => {
-        const updatedComments = [...comments];
-        updatedComments[commentIndex].replies.push({ text: newReply, likes: false });
-        setComments(updatedComments);
-    };
-
-    const handleShowComments = () => {
+    const handleComment = () => {
         setShowComments(!showComments);
     };
 
     const addComment = (newComment) => {
-        setComments([...comments, { text: newComment, likes: false, replies: [] }]);
+        setComments([...comments, newComment]);
     };
 
     return (
@@ -44,58 +48,28 @@ const BlogDetails = () => {
                     <p className="blog-text">{blog.text}</p>
                     <div className="blog-actions">
                         <i
-                            className={`fa fa-heart blog-action-icon ${likeClicked ? "liked" : ""}`}
-                            onClick={() => setLikeClicked(!likeClicked)}
+                            className={`fa fa-heart blog-action-icon ${likeClicked ? "liked" : ""
+                                }`}
+                            onClick={handleLike}
                             style={{ fontSize: 40 }}
                         ></i>
                         <i
-                            className={`fa fa-commenting-o blog-action-icon ${showComments ? "active" : ""}`}
-                            onClick={handleShowComments}
+                            className={`fa fa-commenting-o blog-action-icon ${showComments ? "active" : ""
+                                }`}
+                            onClick={handleComment}
                             style={{ fontSize: 40 }}
                         ></i>
                     </div>
                 </div>
             </div>
 
-            {showComments && (
-                <div className="comments-section">
+            <div className={`comments-section ${showComments ? "show" : ""}`}>
+                {showComments && (
                     <div>
                         <h3>Comments</h3>
-                        <ul className="comments-list">
-                            {comments.map((comment, commentIndex) => (
-                                <li key={commentIndex} className="comment-item">
-                                    {comment.text}
-                                    <span
-                                        onClick={() => handleLikeComment(commentIndex)}
-                                        className="comment-action-icon"
-                                    >
-                                        <i className={`fa fa-thumbs-up ${comment.likes ? "liked" : ""}`}></i>
-                                    </span>
-                                    <span
-                                        onClick={() => {
-                                            const newReply = window.prompt("Reply to this comment:");
-                                            if (newReply !== null) {
-                                                handleReplyComment(commentIndex, newReply);
-                                            }
-                                        }}
-                                        className="comment-action-icon"
-                                    >
-                                        <i className={`fa fa-reply`}></i>
-                                    </span>
-                                    <ul className="comment-replies">
-                                        {comment.replies.map((reply, replyIndex) => (
-                                            <li key={replyIndex} className="comment-reply-item">
-                                                {reply.text}
-                                                <span
-                                                    onClick={() => handleLikeComment(replyIndex)}
-                                                    className="comment-action-icon"
-                                                >
-                                                    <i className={`fa fa-thumbs-up ${reply.likes ? "liked" : ""}`}></i>
-                                                </span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </li>
+                        <ul>
+                            {comments.map((comment, index) => (
+                                <li key={index}>{comment}</li>
                             ))}
                         </ul>
                         <textarea
@@ -108,8 +82,8 @@ const BlogDetails = () => {
                             }}
                         />
                     </div>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 };

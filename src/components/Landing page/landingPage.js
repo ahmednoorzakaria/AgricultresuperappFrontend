@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import BlogDetails from "../BlogDetails/BlogDetails";
 import Sidebar from "../Sidebar/Sidebar";
@@ -8,10 +8,14 @@ import NavBar from "../NavBar/NavBar";
 import CustomCard from "../Card/Card";
 import cardData from "../data";
 import AddBlogOptions from "../AddBlogs/AddBlog";
+import axios from "axios";
+
 
 const Page = ({ loggedInUser }) => {
     const [isAddBlogOpen, setIsAddBlogOpen] = useState(false);
     const [selectedBlogId, setSelectedBlogId] = useState(null);
+    const [cardData, setCardData] = useState([]);
+
 
     const openAddBlog = () => {
         setIsAddBlogOpen(true);
@@ -24,6 +28,18 @@ const Page = ({ loggedInUser }) => {
     const handleReadMore = (blogId) => {
         setSelectedBlogId(blogId);
     };
+    useEffect(() => {
+        // Fetch data from your API when the component mounts
+        axios
+            .get("http://localhost:5000/api/users/posts")
+            .then((response) => {
+                console.log(response.data);
+                setCardData(response.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching card data:", error);
+            });
+    }, []);
 
     return (
         <div className="page-container">
@@ -45,16 +61,16 @@ const Page = ({ loggedInUser }) => {
                         {isAddBlogOpen && <AddBlogOptions onClose={closeAddBlog} />}
                         <div className="card-list">
                             {cardData.map((card) => (
-                                <div key={card.id}>
+                                <div key={card._id}>
                                     <CustomCard
-                                        imgSrc={card.imgSrc}
-                                        title={card.title}
-                                        text={card.text}
+                                        imgSrc={card.post_image}
+                                        title={card.post_heading}
+                                        text={card.post_content}
                                     />
                                     <Link
                                         to={`/blog/${card.id}`}
                                         className="read-more-link"
-                                        onClick={() => handleReadMore(card.id)}
+                                        onClick={() => handleReadMore(card.title)}
                                     >
                                         Read More
                                     </Link>
