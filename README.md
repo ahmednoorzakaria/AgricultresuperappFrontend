@@ -28,7 +28,7 @@
 
 ### Introduction
 
-- *This is an Agricultural Super App designed and created so as to help less fortunate farmers gain knowledge, meet professionals within their feild and connect with as many local farmers as possible. Easy access and simplicity was our goal so as to make out web application as manoverable and accessable as possible for everyone across the disapora.*
+- *This is an Agricultural Super App designed and created to help less fortunate farmers gain knowledge, meet professionals within their field and connect with as many local farmers as possible. Easy access and simplicity were our goals, to make our web application as manoeuvrable and accessible as possible for everyone across the diaspora.*
 
 ### Features
 
