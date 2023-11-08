@@ -9,6 +9,9 @@ import CustomCard from "../Card/Card";
 import cardData from "../data";
 import AddBlogOptions from "../AddBlogs/AddBlog";
 import axios from "axios";
+import Air from "../weather/Air";
+import Weather from "../weather/weather";
+import ChatBot from "../Chat/Chat";
 
 
 const Page = ({ loggedInUser }) => {
@@ -48,7 +51,8 @@ const Page = ({ loggedInUser }) => {
 
             <div className="d-flex" id="wrapper">
                 <div className="border-end bg-white" id="sidebar-wrapper" style={{ width: "500px" }}>
-                    <div className="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
+                    <Air/>
+                    <Weather/>
                     <div className="list-group list-group-flush"></div>
                 </div>
 
@@ -70,7 +74,7 @@ const Page = ({ loggedInUser }) => {
                                     <Link
                                         to={`/blog/${card._id}`} 
                                         className="read-more-link"
-                                        onClick={() => handleReadMore(card._id)}
+                                        onClick={() => handleReadMore(card.id)}
                                     >
                                         Read More
                                     </Link>
@@ -80,7 +84,7 @@ const Page = ({ loggedInUser }) => {
                     </div>
                 </div>
                 <div className="border-end bg-white" id="sidebar-wrapper" style={{ width: "500px" }}>
-                    <div className="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
+                    <ChatBot/>
                     <div className="list-group list-group-flush"></div>
                 </div>
             </div>
