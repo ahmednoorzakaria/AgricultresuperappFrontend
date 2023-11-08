@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Chat.css'; // Import your custom CSS for styling
 
 function ChatBot() {
-  const [messages, setMessages] = useState([
+  const [conversation, setConversation] = useState([
     { text: "Hello, how can I assist you?", sender: 'bot' },
   ]);
 
@@ -11,21 +11,20 @@ function ChatBot() {
   const handleUserInput = (e) => {
     setUserInput(e.target.value);
   };
-  console.log(userInput)
 
   const handleSendMessage = async () => {
     if (userInput.trim() !== '') {
-      // Add user message
-      setMessages([...messages, { text: userInput, sender: 'user' }]);
+      // Add user question to the conversation
+      setConversation([...conversation, { text: userInput, sender: 'user' }]);
 
-      // Send user message to the AI and get a response
       try {
-        const response = await sendUserMessage(userInput);
+        // Send user message to the Flask API
+        const response = await sendUserMessageToFlask(userInput);
 
-        // Add bot response
-        setMessages([...messages, { text: response, sender: 'bot' }]);
+        // Add bot response to the conversation
+        setConversation([...conversation, { text: response.response, sender: 'bot' }]);
       } catch (error) {
-        console.error("Error sending message to AI:, error");
+        console.error("Error sending message to Flask:", error);
       }
 
       // Clear user input
@@ -33,40 +32,32 @@ function ChatBot() {
     }
   };
 
-  const sendUserMessage = async (message) => {
-    // Replace 'My API Key' with your actual OpenAI API key
+  // Function to send user message to the Flask API
+  const sendUserMessageToFlask = async (message) => {
+    try {
+      const response = await fetch('http://localhost:6100/get_bard_response', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message }),
+      });
 
-    // Define the API endpoint and request parameters
-    const endpoint = 'https://api.openai.com/v1/engines/davinci/completions';
-    const headers = {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiKey}`,
-    };
-    const data = JSON.stringify({
-      prompt: `Answer the following question: ${message}`,
-      max_tokens: 100,
-    });
+      if (!response.ok) {
+        throw new Error(`API request failed with status: ${response.status}`);
+      }
 
-    // Make the API request
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers: headers,
-      body: data,
-    });
-
-    if (!response.ok) {
-      throw new Error(`API request failed with status: ${response.status}`);
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      throw new Error(`Error sending message to Flask API: ${error.message}`);
     }
-
-    const result = await response.json();
-    console.log(result)
-    return result.choices[0].text.trim();
   };
 
   return (
     <div className="chat-bot-container">
       <div className="chat-messages">
-        {messages.map((message, index) => (
+        {conversation.map((message, index) => (
           <div
             key={index}
             className={`message ${message.sender === 'user' ? 'user' : 'bot'}`}
