@@ -8,7 +8,6 @@
     <li>Python
     <li>SQLAlchemy
     <li>Figma
-    <li>IO.Diagram(for the database structure)
     <li>Jest
     <li>CircleCI
 
