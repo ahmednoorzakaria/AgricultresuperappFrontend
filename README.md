@@ -28,10 +28,24 @@
 
 ### Introduction
 
+- *This is an Agricultural Super App designed and created so as to help less fortunate farmers gain knowledge, meet professionals within their feild and connect with as many local farmers as possible. Easy access and simplicity was our goal so as to make out web application as manoverable and accessable as possible for everyone across the disapora.*
+
+### Features
+
+<li>Here are the features of our web application:
+
+ - *Viewing and Updating of User Profiles.*
+ - *Liking and Commenting under Posts.*
+ - *Following of other users.*
+ - *Accurate Weather Display.*
+
+#### Known Bugs
+
+<li>No known bugs at the moment.
 
 #### Support and contact details 
 
-<li>To make a contribution to the code used or any suggestions you can click on the contact link and email me your suggestions.
+<li>To make a contribution to the code used or any suggestions you can click on the contact link and email us your suggestions.
 
 - Email: ahmednoor.zakaria@student.moringaschool.com
 - Email: abigael.mutuku@student.moringaschool.com
@@ -53,3 +67,4 @@ INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
 LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
+--------------------------------------------------------------------
