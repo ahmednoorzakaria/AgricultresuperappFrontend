@@ -1,0 +1,54 @@
+/* Profilepage.css */
+
+.profile-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-picture {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.profile-info h1 {
+  font-size: 1.5em;
+  margin: 5px 0;
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 0;
+}
+
+.profile-stat {
+  text-align: center;
+  flex: 1;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+}
+
+.profile-stat:last-child {
+  border-right: none;
+}
+
+.profile-posts {
+  /* Style your posts grid here, for example: */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+
