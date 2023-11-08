@@ -6,6 +6,8 @@
 **Technologies Used Within The Creation Of This Project**
     <li>REACT
     <li>Python
+    <li>Javascript
+    <li>CSS
     <li>SQLAlchemy
     <li>Figma
     <li>Jest
