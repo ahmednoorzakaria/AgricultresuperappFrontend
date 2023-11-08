@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import cardData from "../data";
 import axios from "axios";
-
 import "./BlogDetails.css";
+
 const BlogDetails = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState({});
@@ -11,23 +10,55 @@ const BlogDetails = () => {
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState([]);
   const [likeClicked, setLikeClicked] = useState(false);
+ 
 
+  const fetchUserName = async (userId) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/users/users/${userId}`);
+
+      const userData = response.data;
+      return userData
+      
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      return "User Not Found";
+    }
+  };
   useEffect(() => {
     // Fetch the blog post from the server based on the ID
     axios
       .get(`http://localhost:5000/api/users/individualPosts/${id}`)
       .then((response) => {
         setBlog(response.data);
-        console.log(response.data)
+        setComments(response.data.comments);
+        
+       
       })
+      
       .catch((error) => {
         console.error("Error fetching blog post:", error);
       });
-  }, [id]);
+  }, [])
 
-  if (!blog) {
-    return <div className="blog-details-container">Blog not found</div>;
-  }
+  
+
+
+  
+
+
+
+
+  const displayComments = async () => {
+    const updatedComments = await Promise.all(comments.map(async (comment) => {
+      const userName = await fetchUserName(comment.user_id);
+      return {
+        ...comment,
+        userName,
+      };
+    }))
+    setComments(updatedComments);
+  };
+
   
 
   const handleLike = () => {
@@ -35,31 +66,28 @@ const BlogDetails = () => {
     setLikeClicked(!likeClicked);
   };
 
-
   const handleComment = () => {
     setShowComments(!showComments);
-    setComments(blog.comments)
+    if (showComments) {
+      setComments([]);
+    } else {
+      displayComments();
+    }
   };
 
-  const addComment = (newComment) => {
-    setComments([...comments, newComment]);
-  };
-
-  const handleAddComment = (newComment) => {
-    axios.put(`http://localhost:5000/api/users/individualPosts/${id}`,newComment)
-    .then((response) => {
-
-         // Handle the response if needed (e.g., update the UI)
-         console.log("Comment added successfully");
-         console.log(response.data);
-        })
-        .catch((error) => {
-            // Handle any errors
-            console.error("Error adding comment:", error);
-        });
-
+  const handleAddComment = () => {
+   
+  try{
+    const response = axios.put(`http://localhost:5000/api/users/addComment/${id}`)
+    console.log(response.data)
     
   }
+  catch (error) {
+    console.error("Error fetching user data:", error);
+    return "Not able to comment";
+
+  }
+}
 
   return (
     <div className="blog-details-container">
@@ -86,31 +114,31 @@ const BlogDetails = () => {
           ></i>
         </div>
       </div>
-
+      
       <div className={`comments-section ${showComments ? "show" : ""}`}>
         {showComments && (
           <div>
             <h3>Comments</h3>
             <ul>
               {comments.map((comment, index) => (
-                <div>
-                <h2>User:{comment.user_id}</h2>
-                <h4 key={index}>{comment.comment_content}</h4>
-              
-
+                <div key={index}>
+                  <h2>User: {comment.userName}</h2>
+                  <h4>{comment.comment_content}</h4>
+                  
                 </div>
-                ))}
+              ))}
             </ul>
             <textarea
-              placeholder="Add a comment..."
-              onKeyUp={(e) => {
-                if (e.key === "Enter") {
-                  handleAddComment(newComment)
-                  addComment(e.target.value);
-                  e.target.value = "";
-                }
-              }}
-            />
+            
+placeholder="Add a comment..."
+onKeyUp={(e) => {
+  if (e.key === "Enter") {
+    handleAddComment(newComment)
+    addComment(e.target.value);
+    e.target.value = "";
+  }
+}}
+/>
           </div>
         )}
       </div>
@@ -119,3 +147,6 @@ const BlogDetails = () => {
 };
 
 export default BlogDetails;
+
+
+
