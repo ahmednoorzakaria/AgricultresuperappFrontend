@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./AddBlog.css";
+import cardData from "../data";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode"; // Import jwtDecode without destructuring
 
@@ -38,6 +39,20 @@ function AddBlogOptions({ onClose }) {
     });
   };
 
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setNewBlog({
+          ...newBlog,
+          post_image: event.target.result,
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSubmit = async () => {
     if (!newBlog.post_image || !newBlog.post_heading || !newBlog.post_content) {
       alert("Please fill in all mandatory fields");
@@ -63,7 +78,7 @@ function AddBlogOptions({ onClose }) {
         Authorization: token,
       };
 
-      const response = axios.post(
+      const response = await axios.post(
         "http://localhost:5000/api/users/create",
         newBlogEntry,
         { headers }

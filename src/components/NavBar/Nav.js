@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "./Cultural.png";
 import "./Nav.css";
 
+
 const Nav = ({ loggedInUser, handleLogout }) => {
   const loginText = loggedInUser ? "Logout" : "Login";
 
