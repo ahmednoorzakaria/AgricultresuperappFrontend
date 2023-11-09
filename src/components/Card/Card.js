@@ -7,11 +7,11 @@ import {
   CCardTitle,
   CCardText,
 } from '@coreui/react';
-import './CustomCard.css'; // Import your custom CSS file
+import './CustomCard.css';
 
 const CustomCard = ({ imgSrc, title, text, buttonLink, onClick }) => {
-  // Get the first line of text
-  const firstLine = text.split('\n')[0];
+  const characterLimit = 100;
+  const truncatedText = text.length > characterLimit ? `${text.substring(0, characterLimit)}...` : text;
 
   return (
     <CCard className="custom-card">
@@ -19,7 +19,7 @@ const CustomCard = ({ imgSrc, title, text, buttonLink, onClick }) => {
       <CCardBody>
         <CCardTitle>{title}</CCardTitle>
         <CCardText className="custom-card-text">
-          {firstLine}
+          {truncatedText}
         </CCardText>
         <Link to={buttonLink} className="btn btn-primary" onClick={onClick}>
           Read More

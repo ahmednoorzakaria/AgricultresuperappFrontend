@@ -262,38 +262,3 @@ Template sidebar
 .media-body h5 a:hover {
     color: #4782d3;
 }
-.comment-name {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.comment-icon + .comment-name {
-  margin-left: 10px;
-}
-.comment-section {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    border-radius: 8px;
-  }
-  
-  .comment-box {
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .comment-box:hover {
-    transform: scale(1.05);
-  }
-  .paragraph {
-    font-family: 'Your Desired Font', sans-serif; /* Replace 'Your Desired Font' with the actual font you want to use */
-    font-size: 16px; /* Adjust the font size as needed */
-    line-height: 1.6; /* Adjust the line height for better readability */
-    text-align: justify; /* Adjust the text alignment */
-    margin-bottom: 15px; /* Add margin between paragraphs */
-  }
-  
-  .enlarged-image {
-    width: 100%; /* Set the width to 100% to fill the container */
-    max-height: 500px; /* Set the maximum height to maintain aspect ratio */
-    object-fit: cover; /* Maintain the aspect ratio and cover the container */
-  }
-  

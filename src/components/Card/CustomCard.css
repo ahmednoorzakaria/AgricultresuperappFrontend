@@ -1,0 +1,23 @@
+.custom-card {
+    width: 350px; /* Set the desired width for the card */
+    height: 100%; /* Set the desired height for the card */
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px; /* Add border-radius to curve the corners */
+  }
+  
+  .custom-card-image {
+    width: 100%; /* Make the image fill the width of the card */
+    height: 200px; /* Set the desired height for the image */
+    object-fit:scale-down; /* Maintain aspect ratio and cover the entire space */
+  }
+  
+  .custom-card-text {
+    height: 60px; /* Set the desired height for the text area */
+    overflow: hidden;
+  }
+  
+  .btn-primary {
+    margin-top: auto; /* Align the button to the bottom of the card */
+  }
+  

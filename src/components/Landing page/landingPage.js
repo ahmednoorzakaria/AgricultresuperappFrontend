@@ -10,8 +10,7 @@ import axios from "axios";
 import Air from "../weather/Air";
 import Weather from "../weather/weather";
 import ChatBot from "../Chat/Chat";
-// ... (your existing imports)
-
+import Footer from "../Footer/Footer";
 import "./Landingpage.css";
 
 const Page = ({ loggedInUser }) => {
@@ -59,16 +58,19 @@ const Page = ({ loggedInUser }) => {
           {isAddBlogOpen && <AddBlogOptions onClose={closeAddBlog} />}
           <div className="card-list">
             {cardData.map((card) => (
-              <div key={card._id} className="card-wrapper">
+              <div key={card._id}>
                 <CustomCard
                   imgSrc={card.post_image}
                   title={card.post_heading}
                   text={card.post_content}
-                  buttonLink={`/blog/${card._id}`} // Pass the string directly
+                  buttonLink={`/blog/${card._id}`}
                   onClick={() => handleReadMore(card.id)}
                 />
               </div>
             ))}
+            <div className="card-dots">
+              <span>...</span>
+            </div>
           </div>
         </div>
         <div className="border-end bg-white sidebar" id="sidebar-right">
@@ -76,6 +78,7 @@ const Page = ({ loggedInUser }) => {
           <div className="list-group list-group-flush"></div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
