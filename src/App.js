@@ -6,6 +6,7 @@ import SignUp from "./components/Log-In/SignUpPage";
 import BlogDetails from "./components/BlogDetails/BlogDetails";
 import Profile from "./components/Profile/Profile";
 import Page from "./components/Landing page/landingPage";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState(""); // Define loggedInUser state
@@ -53,6 +54,7 @@ function App() {
           <Route path="/blog/:id" element={<BlogDetails />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Page" element={<Page />} />
+          <Route path="/Footer" element={<Footer />} />
 
 
         </Routes>
