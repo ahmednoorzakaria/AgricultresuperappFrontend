@@ -12,7 +12,7 @@ function Signup() {
     bio: "",
     email: "",
     password: "",
-    fileInput: null,
+    profile_img: "",
     termsChecked: true,
   });
 
@@ -78,8 +78,8 @@ function Signup() {
               <label className="form-label" htmlFor="registerPassword">Password</label>
             </div>
             <div className="form-outline mb-4">
-              <input type="file" id="fileInput" className="form-control" name="fileInput" onChange={handleInputChange} />
-              <label className="form-label" htmlFor="fileInput">Choose a File</label>
+              <input type="text" id="profile_img" className="form-control" name="profile_img" onChange={handleInputChange} />
+              <label className="form-label" htmlFor="fileInput">Insert image url</label>
             </div>
 
             <div className="form-check d-flex justify-content-center mb-4">
