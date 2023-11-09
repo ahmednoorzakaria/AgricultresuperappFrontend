@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./LogInPage.css";
-import Nav from "../NavBar/Nav"; // Import the Nav component
+import Nav from "../NavBar/Nav";
 
-function Login({ setLoggedInUser, loggedInUser }) {
+function Login({ setLoggedInUser }) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const navigate = useNavigate(); // Initialize navigate for navigation
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,13 +21,8 @@ function Login({ setLoggedInUser, loggedInUser }) {
       );
 
       if (response.data.proceed) {
-        // If login is successful, set the logged-in user's name
         setLoggedInUser(response.data.data.UserName);
-
         localStorage.setItem("jwtToken", response.data.token);
-        
-
-        // Redirect to the specified route after a successful login (in this case, "/")
         navigate("/");
       } else {
         console.error("Login failed:", response.data.message);
@@ -44,7 +39,6 @@ function Login({ setLoggedInUser, loggedInUser }) {
 
   return (
     <div>
-      // Display the login form when not logged in
       <div className="tab-content">
         <div
           className="tab-pane fade show active"
@@ -57,31 +51,23 @@ function Login({ setLoggedInUser, loggedInUser }) {
               <p>Log In with:</p>
             </div>
 
-            <div className="form-outline mb-4">
-              <input
-                type="text"
-                id="loginName"
-                className="form-control"
-                name="email"
-                onChange={handleInputChange}
-              />
-              <label className="form-label" htmlFor="loginName">
-                Email or username
-              </label>
-            </div>
+            <FormInput
+              type="text"
+              id="loginName"
+              name="email"
+              label="Email or username"
+              value={formData.email}
+              onChange={handleInputChange}
+            />
 
-            <div className="form-outline mb-4">
-              <input
-                type="password"
-                id="loginPassword"
-                className="form-control"
-                name="password"
-                onChange={handleInputChange}
-              />
-              <label className="form-label" htmlFor="loginPassword">
-                Password
-              </label>
-            </div>
+            <FormInput
+              type="password"
+              id="loginPassword"
+              name="password"
+              label="Password"
+              value={formData.password}
+              onChange={handleInputChange}
+            />
 
             <div className="row mb-4">
               <div className="col-md-6 d-flex justify-content-center">
@@ -94,8 +80,7 @@ function Login({ setLoggedInUser, loggedInUser }) {
                     defaultChecked
                   />
                   <label className="form-check-label" htmlFor="loginCheck">
-                    {" "}
-                    Remember me{" "}
+                    Remember me
                   </label>
                 </div>
               </div>
@@ -119,6 +104,24 @@ function Login({ setLoggedInUser, loggedInUser }) {
           </form>
         </div>
       </div>
+    </div>
+  );
+}
+
+function FormInput({ type, id, name, label, value, onChange }) {
+  return (
+    <div className="form-outline mb-4">
+      <input
+        type={type}
+        id={id}
+        className="form-control"
+        name={name}
+        value={value}
+        onChange={onChange}
+      />
+      <label className="form-label" htmlFor={id}>
+        {label}
+      </label>
     </div>
   );
 }

@@ -8,7 +8,7 @@ import {
   CCardText,
   CButton,
 } from '@coreui/react';
-import './CustomCard.css'; // Import your custom CSS file
+// import './CustomCard.css'; // Import your custom CSS file
 
 const CustomCard = ({ imgSrc, title, text, buttonText, buttonLink }) => {
   return (

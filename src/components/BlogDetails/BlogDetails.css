@@ -6,6 +6,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    flex-direction: column;
 }
 
 .blog-card {
@@ -19,6 +20,7 @@
     max-width: 700px;
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px;
 }
 
 .blog-image {
@@ -74,15 +76,41 @@
 
 .comment-section {
     display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 200px;
+    max-width: 700px;
     background-color: #f0f0f0;
     padding: 10px;
     z-index: 1;
+    margin: 0 auto;
 }
 
 .comments-section.show {
-    right: 0;
+    display: block;
+}
+
+.comment-list {
+    list-style-type: none;
+    padding: 0;
+    display: grid;
+}
+
+.comment-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: block;
+}
+
+.comment-item .comment-action-icon {
+    margin-right: 8px;
+}
+
+.comment-reply-item {
+    margin-left: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    display: block;
 }
