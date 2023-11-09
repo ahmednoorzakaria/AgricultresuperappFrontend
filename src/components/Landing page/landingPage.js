@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import BlogDetails from "../BlogDetails/BlogDetails";
+import BlogDetails from "../BlogDetails/BlogDetails"; 
 import Sidebar from "../Sidebar/Sidebar";
 import "./Landingpage.css";
 import Nav from "../NavBar/Nav";
 import NavBar from "../NavBar/NavBar";
 import CustomCard from "../Card/Card";
-import cardData from "../data";
 import AddBlogOptions from "../AddBlogs/AddBlog";
 import axios from "axios";
 import Air from "../weather/Air";
@@ -31,27 +30,28 @@ const Page = ({ loggedInUser }) => {
     const handleReadMore = (blogId) => {
         setSelectedBlogId(blogId);
     };
-    useEffect(() => {
-        // Fetch data from your API when the component mounts
-        axios
-            .get("http://localhost:5000/api/users/posts")
-            .then((response) => {
-                console.log(response.data);
-                setCardData(response.data);
-            })
-            .catch((error) => {
-                console.error("Error fetching card data:", error);
-            });
+     useEffect(() => {
+    // Fetch data from your API when the component mounts
+    axios
+      .get("http://localhost:5000/api/users/posts")
+      .then((response) => {
+
+        setCardData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching card data:", error);
+      });
     }, []);
-
-    return (
-        <div className="page-container">
-
-            <NavBar />
-
-            <div className="d-flex" id="wrapper">
-                <div className="border-end bg-white" id="sidebar-wrapper" style={{ width: "500px" }}>
-                    <Air/>
+  
+      return (
+          <div className="page-container">
+  
+              <NavBar />
+  
+  
+              <div className="d-flex" id="wrapper">
+                  <div className="border-end bg-white" id="sidebar-wrapper" style={{ width: "500px" }}>
+                      <Air/>
                     <Weather/>
                     <div className="list-group list-group-flush"></div>
                 </div>
@@ -72,7 +72,7 @@ const Page = ({ loggedInUser }) => {
                                         text={card.post_content}
                                     />
                                     <Link
-                                        to={`/blog/${card.id}`}
+                                        to={`/blog/${card._id}`} 
                                         className="read-more-link"
                                         onClick={() => handleReadMore(card.id)}
                                     >
@@ -88,14 +88,6 @@ const Page = ({ loggedInUser }) => {
                     <div className="list-group list-group-flush"></div>
                 </div>
             </div>
-
-            <footer className="footer">
-                <div className="footer-links">
-                    <Link to="">Terms of Service</Link>
-                    <Link to="">Privacy Policy</Link>
-                </div>
-                <p>&copy; Copyright Roll Motion 2023. Rental Agreement.</p>
-            </footer>
         </div>
     );
 };
