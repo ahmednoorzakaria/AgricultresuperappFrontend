@@ -33,7 +33,7 @@
 
 ### Features
 
-<li>Here are the features of our web application:
+Here are the features of our web application:
 
 - *Users can like blogs.*
 - *Users can comment under blogs.*
