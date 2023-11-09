@@ -1,74 +1,24 @@
+/* Add this style to your Landingpage.css file or your component's styling */
+#sidebar-left,
+#sidebar-right {
+  width: 600px;
+}
+/* Add this style to your Landingpage.css file or your component's styling */
 .card-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 50px;
 }
 
-.card-list .card {
-  width: 31%;
-  margin-bottom: 20px;
-  transition: transform 0.2s;
+.card-wrapper {
+  width: calc(33.33% - 10px); /* Adjust the width as needed, considering margins */
+  margin-bottom: 20px; /* Add some bottom margin for spacing */
 }
 
-.card-list .card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+/* Ensure the images have a fixed height */
+.card-wrapper img {
+  max-width: 100%;
+  height: 200px; /* Set your desired height for the images */
+  object-fit: cover; /* Maintain aspect ratio and cover the container */
 }
 
-.sidebar {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow-y: auto;
-}
-
-.content {
-  flex-grow: 1;
-  padding: 20px;
-}
-
-body.overlay-active {
-  overflow: hidden;
-}
-
-.footer {
-  background: rgba(159, 159, 159, 0.3);
-  box-shadow: 0 -3px 4px rgba(0, 0, 0, 0.1);
-  position: relative;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
-  z-index: 999;
-  min-height: 60px;
-  overflow: hidden;
-}
-
-
-
-.footer-links {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 5px;
-  gap: 100px;
-}
-
-.footer-links {
-  list-style: none;
-  display: flex;
-}
-
-.footer a {
-  text-decoration: none;
-  color: black;
-  margin-right: 20px;
-}
-
-.footer a:hover {
-  text-decoration: underline;
-}
