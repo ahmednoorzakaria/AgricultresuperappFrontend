@@ -5,10 +5,10 @@
 
 **Technologies Used Within The Creation Of This Project**
     <li>REACT
-    <li>Python
+    <li>Node.JS
     <li>Javascript
     <li>CSS
-    <li>SQLAlchemy
+    <li>MonoDB
     <li>Figma
     <li>Jest
     <li>CircleCI
@@ -29,16 +29,20 @@
 
 ### Introduction
 
-- *This is an Agricultural Super App designed and created to help less fortunate farmers gain knowledge, meet professionals within their field and connect with as many local farmers as possible. Easy access and simplicity were our goals, to make our web application as manoeuvrable and accessible as possible for everyone across the diaspora.*
+- *The Agricultural Super App is a web application designed to help farmers improve their yields by providing access to the latest agricultural practices, technologies, and expert advice. The app allows farmers to connect with professionals in their field and network with other farmers, opening up new markets and knowledge-sharing platforms. The core mission of the app is to make agriculture accessible and sustainable for everyone, empowering farmers to take control of their farming activities and improve their livelihoods, protect the environment, and contribute to global food security.*
 
 ### Features
 
 <li>Here are the features of our web application:
 
-  - *Viewing and Updating of User Profiles.*
-  - *Liking and Commenting under Posts.*
-  - *Following of other users.*
-  - *Accurate Weather Display.*
+- *Users can like blogs.*
+- *Users can comment under blogs.*
+- *Users have Profiles.*
+- *Users can also view and update themselves on breaking news.*
+- *Users can view Accurate Weather portrayals.*
+- *Users can sign up/log in and also log out.*
+- *Users can have their questions answered through the integrated AI Chat Box on the sidebar.*
+
 
 #### Known Bugs
 
@@ -59,7 +63,7 @@ Copyright (c) {{ 2023 }}, {{ CULTURAL }}
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
+copyright notice and this permission notice appears in all copies.
 
 THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
 REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
