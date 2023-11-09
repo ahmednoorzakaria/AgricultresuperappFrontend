@@ -10,6 +10,7 @@ const BlogDetails = () => {
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState([]);
   const [likeClicked, setLikeClicked] = useState(false);
+  const [commentInput, setCommentInput] = useState("");
  
 
   const fetchUserName = async (userId) => {
@@ -75,18 +76,37 @@ const BlogDetails = () => {
     }
   };
 
-  const handleAddComment = () => {
-   
-  try{
-    const response = axios.put(`http://localhost:5000/api/users/addComment/${id}`)
-    console.log(response.data)
-    
-  }
-  catch (error) {
-    console.error("Error fetching user data:", error);
-    return "Not able to comment";
+  const handleAddComment = (e) => {
+    e.preventDefault();
+    const commentContent = e.target.elements.commentInput.value
 
-  }
+    if (!commentContent) {
+      return; // Prevent submitting an empty comment
+    }
+  
+    const newComment = {
+      user_id: localStorage.getItem("UserId"),
+      comment_content: commentContent,
+    };
+  
+    try {
+      axios.put(`http://localhost:5000/api/users/addComment/${id}`, newComment)
+        .then((response) => {
+          console.log(response.data);
+          
+  
+          
+          commentInput = ""; // Clear the comment input
+        })
+        .catch((error) => {
+          console.error("Error adding comment:", error);
+          alert("Failed to add comment. Please try again later.");
+        });
+    } catch (error) {
+      console.error("Error adding comment:", error);
+      alert("Failed to add comment. Please try again later.");
+    }
+  
 }
 
   return (
@@ -128,17 +148,16 @@ const BlogDetails = () => {
                 </div>
               ))}
             </ul>
-            <textarea
-            
-placeholder="Add a comment..."
-onKeyUp={(e) => {
-  if (e.key === "Enter") {
-    handleAddComment(newComment)
-    addComment(e.target.value);
-    e.target.value = "";
-  }
-}}
-/>
+            <form onSubmit={handleAddComment}>
+  <input
+  
+    id="commentInput"
+    name="commentInput"
+    placeholder="Add a comment..."
+    type="text"
+  />
+  <button type="submit">Submit</button>
+</form>
           </div>
         )}
       </div>
