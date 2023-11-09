@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./AddBlog.css";
-import cardData from "../data";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode"; // Import jwtDecode without destructuring
 
