@@ -5,6 +5,7 @@
 
 **Technologies Used Within The Creation Of This Project**
     <li>REACT
+    <li>Python
     <li>Node.JS
     <li>Javascript
     <li>CSS
@@ -37,9 +38,8 @@ Here are the features of our web application:
 
 - *Users can like blogs.*
 - *Users can comment under blogs.*
-- *Users have Profiles.*
-- *Users can also view and update themselves on breaking news.*
-- *Users can view Accurate Weather portrayals.*
+- *Users have Profiles which hold their details.*
+- *Users can view Accurate Weather Portrayals.*
 - *Users can sign up/log in and also log out.*
 - *Users can have their questions answered through the integrated AI Chat Box on the sidebar.*
 
@@ -50,7 +50,7 @@ Here are the features of our web application:
 
 #### Support and contact details 
 
-To make a contribution to the code used or any suggestions you can click on the contact link and email us your suggestions.
+To contribute to the code used or any suggestions you can click on the contact link and email us your suggestions.
 
 - Email: ahmednoor.zakaria@student.moringaschool.com
 - Email: abigael.mutuku@student.moringaschool.com
@@ -63,7 +63,7 @@ Copyright (c) {{ 2023 }}, {{ CULTURAL }}
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appears in all copies.
+copyright notice and this permission notice appear in all copies.
 
 THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
 REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
