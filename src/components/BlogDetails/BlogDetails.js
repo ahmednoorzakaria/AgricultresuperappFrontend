@@ -199,7 +199,7 @@ const BlogDetails = () => {
                           className="mt-0 font400 clearfix"
                           style={{ color: "black" }}
                         >
-                          {comment.User.name}
+                          {comment.User}
                         </h5>
                       </i>
                       <div className="media-body">
