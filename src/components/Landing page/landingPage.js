@@ -32,7 +32,7 @@ const Page = ({ loggedInUser }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/users/posts")
+      .get("https://agriconnect-3erw.onrender.com/api/users/posts")
       .then((response) => {
         setCardData(response.data);
       })

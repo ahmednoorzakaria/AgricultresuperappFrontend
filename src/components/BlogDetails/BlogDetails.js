@@ -9,25 +9,13 @@ const BlogDetails = () => {
   const [likes, setLikes] = useState(0);
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState([]);
-  const [likeClicked, setLikeClicked] = useState(false);
-  const [newCommentContent, setNewCommentContent] = useState(""); // Add this line
-
-  const fetchUserName = async (userId) => {
-    try {
-      const response = await axios.get(
-        `http://localhost:5000/api/users/users/${userId}`
-      );
-      const userData = response.data;
-      return userData;
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-      return "User Not Found";
-    }
-  };
+  const [userData, setUserData] = useState(null);
+  const [newCommentContent, setNewCommentContent] = useState("");
+  const [followed, setFollowed] = useState(false); // Add this line
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/users/individualPosts/${id}`)
+      .get(`https://agriconnect-3erw.onrender.com/api/users/individualPosts/${id}`)
       .then((response) => {
         setBlog(response.data);
         console.log(response.data);
@@ -37,6 +25,19 @@ const BlogDetails = () => {
         console.error("Error fetching blog post:", error);
       });
   }, []);
+
+  const fetchUserName = async (user_id) => {
+    try {
+      const response = await axios.get(
+        `https://agriconnect-3erw.onrender.com/api/users/users/${userId}`
+      );
+      setuserData(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      return "User Not Found";
+    }
+  };
 
   const displayComments = async () => {
     const updatedComments = await Promise.all(
@@ -49,11 +50,6 @@ const BlogDetails = () => {
       })
     );
     setComments(updatedComments);
-  };
-
-  const handleLike = () => {
-    setLikes(likes + (likeClicked ? -1 : 1));
-    setLikeClicked(!likeClicked);
   };
 
   const handleComment = () => {
@@ -80,7 +76,7 @@ const BlogDetails = () => {
 
     try {
       axios
-        .put(`http://localhost:5000/api/users/addComment/${id}`, newComment)
+        .put(`https://agriconnect-3erw.onrender.com/api/users/addComment/${id}`, newComment)
         .then((response) => {
           console.log(response.data);
           // Clear the comment input
@@ -97,7 +93,7 @@ const BlogDetails = () => {
   };
 
   useEffect(() => {
-    const blogContent = document.querySelector(".container"); // Change this to the desired class
+    const blogContent = document.querySelector(".container");
     const navbar = document.querySelector(".navbar");
 
     const handleScroll = () => {
@@ -118,13 +114,43 @@ const BlogDetails = () => {
     };
   }, []);
 
+  const handleFollow = async () => {
+    try {
+      // Assuming you have the user ID and post ID available
+      const userId = localStorage.getItem("UserId");
+      const followingUserId = blog.user_id; // or replace with the appropriate field from your data
+
+      const response = await axios.put(
+        "https://agriconnect-3erw.onrender.com/api/users/follow",
+        {
+          user_id: userId,
+          followingUserId: followingUserId,
+        }
+      );
+
+      // Check the response and update the UI as needed
+      if (response.data.message === "Successfully followed user") {
+        setFollowed(true);
+        // You may also update other UI elements or state variables
+      } else {
+        console.error("Failed to follow user:", response.data.message);
+      }
+    } catch (error) {
+      console.error("Error following user:", error);
+      // Handle errors
+    }
+  };
+
   return (
     <div>
       <link
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         rel="stylesheet"
       />
-      <div className="container pb50" style={{ marginTop: "150px" }}>
+      <div
+        className={`container pb50 ${followed ? "white-bg" : ""}`}
+        style={{ marginTop: "150px" }}
+      >
         {" "}
         <div className="row">
           <div className="col-md-9 mb40">
@@ -139,16 +165,24 @@ const BlogDetails = () => {
                 <ul className="post-meta list-inline">
                   <li className="list-inline-item">
                     <i className="fa fa-user-circle-o"></i>{" "}
-                    <a href="#">John Doe</a>
+                    <a href="#">{userData ? userData.name : "Unknown User"}</a>
                   </li>
                   <li className="list-inline-item">
                     <i className="fa fa-calendar-o"></i>{" "}
-                    <a href="#">{blog.timestamp}</a>
+                    <a href="#">
+                      {new Date(blog.timestamp).toLocaleDateString()}
+                    </a>
                   </li>
-                  <li className="list-inline-item">
-                    <i className="fa fa-tags"></i> <a href="#">Bootstrap4</a>
-                  </li>
+                  <button
+                    className={`btn btn-success btn-sm ml-2 ${
+                      followed ? "btn-followed" : "btn-white"
+                    }`}
+                    onClick={handleFollow}
+                  >
+                    {followed ? "Followed" : `+ Follow`}
+                  </button>
                 </ul>
+
                 {blog.post_content &&
                   blog.post_content.split("\n").map((paragraph, index) => (
                     <p key={index} className="paragraph">
@@ -189,7 +223,12 @@ const BlogDetails = () => {
                     ></textarea>
                   </div>
                   <div className="clearfix float-right">
-                    <button type="submit" className="btn btn-primary btn-lg">
+                    <button
+                      type="submit"
+                      className={`btn btn-success btn-lg ${
+                        followed ? "btn-followed" : "btn-white"
+                      }`}
+                    >
                       Submit
                     </button>
                   </div>

@@ -16,38 +16,35 @@ import { Link } from "react-router-dom";
 
 export default function Profile({ match }) {
   const token = localStorage.getItem("UserId");
-  const [data, setdata] = useState(""); // Define loggedInUser state
+  const [data, setdata] = useState({});
   const [cardData, setcardData] = useState([]);
 
-  console.log(token);
-
   useEffect(() => {
-    // Fetch data from your API when the component mounts
     axios
-      .get(`http://localhost:5000/api/users/user/${token}`) // Use template literals
+      .get(`https://agriconnect-3erw.onrender.com/api/users/user/${token}`)
       .then((response) => {
         setdata(response.data);
         console.log(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching card data:", error);
+        console.error("Error fetching user data:", error);
       });
   }, [token]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/users/posts/${token}`
+          `https://agriconnect-3erw.onrender.com/api/users/posts/${token}`
         );
         setcardData(response.data);
         console.log(response.data);
-        // Add further logic here to handle the data
       } catch (error) {
         console.error("Error fetching card data:", error);
       }
     };
 
-    fetchData(); // Call the async function
+    fetchData();
   }, []);
 
   return (
@@ -83,21 +80,25 @@ export default function Profile({ match }) {
                   className="ms-3"
                   style={{ marginTop: "130px", color: "black" }}
                 >
-                  <MDBTypography tag="h5"> {data.name}</MDBTypography>
+                  <MDBTypography tag="h5">{data.name}</MDBTypography>
                 </div>
               </div>
-              <div
-                className="p-4 text-black"
-                style={{ backgroundColor: "#f8f9fa" }}
-              >
-                <div className="d-flex justify-content-end text-center py-1">
-                  <div></div>
-                  <div className="px-3">
-                    <MDBCardText className="mb-1 h5">1026</MDBCardText>
-                    <MDBCardText className="small text-muted mb-0">
-                      Followers
-                    </MDBCardText>
-                  </div>
+              <div className="ms-auto me-4 mt-5 d-flex align-items-center">
+                <div className="px-3">
+                  <MDBCardText className="mb-1 h5">
+                    {data.followers ? data.followers.length : 0}
+                  </MDBCardText>
+                  <MDBCardText className="small text-muted mb-0">
+                    Followers
+                  </MDBCardText>
+                </div>
+                <div className="px-3">
+                  <MDBCardText className="mb-1 h5">
+                    {data.following ? data.following.length : 0}
+                  </MDBCardText>
+                  <MDBCardText className="small text-muted mb-0">
+                    Following
+                  </MDBCardText>
                 </div>
               </div>
               <MDBCardBody className="text-black p-4">
@@ -117,7 +118,6 @@ export default function Profile({ match }) {
                 <div className="row">
                   {cardData.map((card) => (
                     <div key={card._id} className="col-md-6 mb-4">
-                      {/* Set the column size for medium screens and add spacing */}
                       <CustomCard
                         imgSrc={card.post_image}
                         title={card.post_heading}

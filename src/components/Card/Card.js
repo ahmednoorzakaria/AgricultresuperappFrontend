@@ -9,6 +9,7 @@ import {
 } from '@coreui/react';
 import './CustomCard.css';
 
+
 const CustomCard = ({ imgSrc, title, text, buttonLink, onClick }) => {
   const characterLimit = 100;
   const truncatedText = text.length > characterLimit ? `${text.substring(0, characterLimit)}...` : text;
@@ -21,7 +22,7 @@ const CustomCard = ({ imgSrc, title, text, buttonLink, onClick }) => {
         <CCardText className="custom-card-text">
           {truncatedText}
         </CCardText>
-        <Link to={buttonLink} className="btn btn-primary" onClick={onClick}>
+        <Link to={buttonLink} className="btn btn-success" onClick={onClick}>
           Read More
         </Link>
       </CCardBody>
