@@ -78,7 +78,7 @@ function AddBlogOptions({ onClose }) {
       };
 
       const response = await axios.post(
-        "http://localhost:5000/api/users/create",
+        "https://agriconnect-3erw.onrender.com/api/users/create",
         newBlogEntry,
         { headers }
       );
