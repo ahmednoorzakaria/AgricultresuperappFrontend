@@ -35,7 +35,7 @@ function ChatBot() {
   // Function to send user message to the Flask API
   const sendUserMessageToFlask = async (message) => {
     try {
-      const response = await fetch('http://localhost:6100/get_bard_response', {
+      const response = await fetch('http://172.30.36.188:6100/get_bard_response', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
