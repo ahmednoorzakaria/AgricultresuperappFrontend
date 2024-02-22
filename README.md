@@ -2,7 +2,7 @@
 **Authours**: *AhmedNoor Zakaria*, *Abigael Mutuku*, *Brian Maina*, *Stephen Ndaba*, *Kamente Justin*
 
 ###IMAGE
-![Image Description](https://user-images.githubusercontent.com/64485885/234602896-a1bd8bcc-b72b-4821-83d6-8ad885bf435e.png)
+![Image Description](src/images/Screenshot from 2024-02-22 09-35-46.png)
 
 ## Prerequisites
 
