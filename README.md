@@ -1,6 +1,9 @@
 # **CULTURAL**: Agricultural-Super-App (Project)
 **Authours**: *AhmedNoor Zakaria*, *Abigael Mutuku*, *Brian Maina*, *Stephen Ndaba*, *Kamente Justin*
 
+###IMAGE
+![Image Description](https://user-images.githubusercontent.com/64485885/234602896-a1bd8bcc-b72b-4821-83d6-8ad885bf435e.png)
+
 ## Prerequisites
 
 **Technologies Used Within The Creation Of This Project**
